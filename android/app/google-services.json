@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "136449772225",
+    "firebase_url": "https://cervicalcancer-93f13.firebaseio.com",
+    "project_id": "cervicalcancer-93f13",
+    "storage_bucket": "cervicalcancer-93f13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:136449772225:android:d7ea856902abd920d92240",
+        "android_client_info": {
+          "package_name": "com.cervicalcancer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "136449772225-per8ge73lfeq393m0gj6g5sn9p0ildu4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVRXdMdoDG34DbMtj45gHdyfMPr9DaNeM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "136449772225-per8ge73lfeq393m0gj6g5sn9p0ildu4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
