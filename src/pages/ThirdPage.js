@@ -16,8 +16,8 @@ export default class ThirdPage extends Component{
     constructor(props) {
         super(props)
         this.state = {
-            cancerFamily: [],
-            kindOfCancer: [],
+            MotherCancer: [],
+            FatherCancer: [],
             HASorDM: [],
             cort: '',
             pageThreeValue: 0,
@@ -46,10 +46,28 @@ export default class ThirdPage extends Component{
         
     }
 
+    AddMotherCancer(cancer){
+        var arr = this.state.MotherCancer;
+        arr.push(cancer);
+        this.setState({MotherCancer: arr})
+    }
+
+    AddFatherCancer(cancer){
+        var arr = this.state.FatherCancer;
+        arr.push(cancer);
+        this.setState({FatherCancer: arr});
+    }
+    
+    AddHasOrDm(desease){
+        var arr = this.state.HASorDM;
+        arr.push(desease);
+        this.setState({HASorDM: arr});
+    }
+
     _Pass = () => {
         this.props.navigation.navigate('FourthPage', {  
-            cancerFamily: this.state.cancerFamily,
-            kindOfCancer: this.state.kindOfCancer,
+            MotherCancer: this.state.MotherCancer,
+            FatherCancer: this.state.FatherCancer,
             HASorDM: this.state.HASorDM,
             cort: this.state.cort,
             pageThreeValue: this.state.pageTwoValue,
@@ -72,55 +90,61 @@ export default class ThirdPage extends Component{
 
 
     render(){
+        const { navigation } = this.props;  
+        const infectDesease = navigation.getParam('infectDesease', 'value'); 
+
         return (
             <ScrollView>
                 <SafeAreaView style = {styles.Container}>
+                    <Text>infectDesease: {JSON.stringify(infectDesease)}</Text> 
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
-                            <Text style= {styles.Text}>Alguem da sua família tem/teve cancer?</Text>
+                            <Text style= {styles.Text}>Sua mãe já teve algum tipo de cancer?</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({cancerFamily: cancerFamily.push('mãe')})}  underlayColor="black">
-                                <Text style = {styles.ButtonText}>mãe</Text>
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.AddMotherCancer('mama')}  underlayColor="black">
+                                <Text style = {styles.ButtonText}>mama</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({cancerFamily: cancerFamily.push('pai')})}  underlayColor="white">
-                                <Text style = {styles.ButtonText}>pai</Text>
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.AddMotherCancer('tireoide')}  underlayColor="white">
+                                <Text style = {styles.ButtonText}>tireoide</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({cancerFamily: cancerFamily.push('irmã')})}  underlayColor="white">
-                                <Text style = {styles.ButtonText}>irmã</Text>
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.AddMotherCancer('intestino')}  underlayColor="white">
+                                <Text style = {styles.ButtonText}>intestino</Text>
                             </TouchableOpacity>
                             </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({cancerFamily: cancerFamily.push('tia')})}  underlayColor="white">
-                                <Text style = {styles.ButtonText}>tia</Text>
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.AddMotherCancer('utero')}  underlayColor="white">
+                                <Text style = {styles.ButtonText}>utero</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({cancerFamily: cancerFamily.push('ninguem')})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>ninguem</Text>
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.AddMotherCancer('nenhum')} underlayColor="white">
+                                <Text style = {styles.ButtonText}>nenhum</Text>
                             </TouchableOpacity>
                         </View>   
                     </View>
 
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
-                            <Text style = {styles.Text}>Quais tipos?</Text>
+                            <Text style= {styles.Text}>Seu pai já teve algum tipo de cancer?</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {this._onPressButton} underlayColor="white">
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.AddFatherCancer('mama')}  underlayColor="black">
                                 <Text style = {styles.ButtonText}>mama</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {this._onPressButton} underlayColor="white">
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.AddFatherCancer('tireoide')}  underlayColor="white">
                                 <Text style = {styles.ButtonText}>tireoide</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {this._onPressButton} underlayColor="white">
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.AddFatherCancer('intestino')}  underlayColor="white">
                                 <Text style = {styles.ButtonText}>intestino</Text>
                             </TouchableOpacity>
-                        </View>
+                            </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {this._onPressButton} underlayColor="white">
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.AddFatherCancer('utero')}  underlayColor="white">
                                 <Text style = {styles.ButtonText}>utero</Text>
                             </TouchableOpacity>
-                        </View>
-            
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.AddFatherCancer('nenhum')} underlayColor="white">
+                                <Text style = {styles.ButtonText}>nenhum</Text>
+                            </TouchableOpacity>
+                        </View>   
                     </View>
 
                     <View style = {styles.QuestionsBox}>
@@ -128,13 +152,13 @@ export default class ThirdPage extends Component{
                             <Text style = {styles.Text}>Você tem Hipertensão ou Diabetes?</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({HASorDM: 'hipert'})} underlayColor="white">
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.AddHasOrDm('hipert')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>hipert</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({HASorDM: 'diabetes'})} underlayColor="white">
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.AddHasOrDm('diabetes')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>diabetes</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({HASorDM: 'nenhuma'})} underlayColor="white">
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.AddHasOrDm('nenhuma')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>nenhuma</Text>
                             </TouchableOpacity>
                             </View>  

@@ -35,12 +35,12 @@ export default class FourthPage extends Component{
 
             fruits: this.props.navigation.getParam('fruits', 'no_fruits'),
             city: this.props.navigation.getParam('city', 'no_city'),
-            infectDesease: this.props.navigation.getParam('infectDesease', 'no_infectDs'),
+            infectDesease: this.props.navigation.getParam('infectDesease', []),
             smoker: this.props.navigation.getParam('smoker', 'no_smoker'),
             pageTwoValue: this.props.navigation.getParam('pageTwoValue', 'no_valueTwo'),
 
-            cancerFamily: this.props.navigation.getParam('cancerFamily', []),
-            kindOfCancer: this.props.navigation.getParam('kindOfCancer', []),
+            MotherCancer: this.props.navigation.getParam('MotherCancer', []),
+            FatherCancer: this.props.navigation.getParam('FatherCancer', []),
             HASorDM: this.props.navigation.getParam('HASorDM', []),
             cort: this.props.navigation.getParam('cort', 'no_cort'),
             pageThreeValue: this.props.navigation.getParam('pageThreeValue', 'no_valueThree'),
@@ -80,8 +80,8 @@ export default class FourthPage extends Component{
             infectDesease: this.state.infectDesease,
             smoker: this.state.smoker,
 
-            cancerFamily: this.state.cancerFamily,
-            kindOfCancer: this.state.kindOfCancer,
+            MotherCancer: this.state.MotherCancer,
+            FatherCancer: this.state.FatherCancer,
             HASorDM: this.state.HASorDM,
             cort: this.state.cort
         }

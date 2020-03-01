@@ -36,6 +36,12 @@ export default class SecondPage extends Component{
         navigation.navigate('ThirdPage')
     };
 
+    _AddInfect(desease){
+        var arr = this.state.infectDesease;
+        arr.push(desease);
+        this.setState({infectDesease: arr})
+    }
+
     _CalculatePage(){
         if (this.state.fruits == "nenuhma"){
             this.setState({pageTwoValue: this.state.pageTwoValue += 0})
@@ -53,7 +59,7 @@ export default class SecondPage extends Component{
             this.setState({pageTwoValue: this.state.pageTwoValue += 0})
         }
 
-        
+
     }
    
     _Pass = () => {
@@ -71,7 +77,8 @@ export default class SecondPage extends Component{
             abort: this.state.abort,
             pageOneValue: this.state.pageOneValue
 
-        })}
+        })
+    }
     
 
     render(){ 
@@ -145,21 +152,21 @@ export default class SecondPage extends Component{
                             <Text style = {styles.Text}>Você tem alguma dessas doenças?</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({infectDesease: "AIDS"})} underlayColor="white">
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this._AddInfect('aids')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>AIDS</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({infectDesease: "hepatite"})} underlayColor="white">
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this._AddInfect('hepatite')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>hepatite</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({infectDesease: "siflis"})} underlayColor="white">
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this._AddInfect('sifilis')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>siflis</Text>
                             </TouchableOpacity>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({infectDesease: "gonorreia"})} underlayColor="white">
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this._AddInfect('gonorreia')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>gonorreia</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({infectDesease: "nenhuma"})} underlayColor="white">
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this._AddInfect('nenhuma')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>nenhuma</Text>
                             </TouchableOpacity>
 
