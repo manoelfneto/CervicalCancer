@@ -79,19 +79,13 @@ export default class SecondPage extends Component{
 
         })
     }
-    
-
     render(){ 
-        const { navigation } = this.props;  
-        const pageOneValue = navigation.getParam('pageOneValue', 'value');  
-
         return (  
+            
             <ScrollView>
                 
-                <SafeAreaView style = {styles.Container}>
-                    
+                <SafeAreaView style = {styles.Container}> 
                     <View style = {styles.QuestionsBox}>
-                    <Text>pageOneValue: {JSON.stringify(pageOneValue)}</Text> 
                         <View style = {styles.QuestionsText}>
                             <Text style= {styles.Text}>Quantas porções de frutas e verduras você ingere por semana?</Text>
                         </View>
@@ -114,31 +108,50 @@ export default class SecondPage extends Component{
                         </View>
                         <View style = {styles.ButtonsBox}>
                         <GooglePlacesAutocomplete
-                            placeholder= 'digite sua cidade'
-                            minLength={2}
+                            placeholder='Search'
+                            minLength={2} // minimum length of text to search
                             autoFocus={false}
-                            fetchDetails={true} 
                             fetchDetails={true}
-                            renderDescription={row => row.description} 
                             onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
-                                console.log(data, details);
+                              console.log(data);
+                              console.log(details);
                             }}
-                            getDefaultValue={() => ''}
-
+                            getDefaultValue={() => {
+                              return ''; // text input default value
+                            }}
                             query={{
-                                // available options: https://developers.google.com/places/web-service/autocomplete
-                                key: 'AIzaSyDL4oFbx4ZknoVAZFj8Wj0htUgs_QgfbQA',
-                                language: 'en', // language of the results
-                                types: '(cities)' // default: 'geocode'
-                              }}
-
-                            styles={{
-                                description: {
-                                    fontWeight: 'bold',
-                                },
+                              // available options: https://developers.google.com/places/web-service/autocomplete
+                              key: 'AIzaSyDL4oFbx4ZknoVAZFj8Wj0htUgs_QgfbQA',
+                              language: 'en', // language of the results
+                              types: '(cities)', // default: 'geocode'
                             }}
-
-                            filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']}
+                            styles={{
+                              description: {
+                                fontWeight: 'bold',
+                              },
+                              predefinedPlacesDescription: {
+                                color: '#1faadb',
+                              },
+                            }}
+                    
+                           
+                            nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
+                            GoogleReverseGeocodingQuery={{
+                              // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
+                            }}
+                            GooglePlacesSearchQuery={{
+                              // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
+                              rankby: 'distance',
+                              types: 'food',
+                            }}
+                            GooglePlacesDetailsQuery={{
+                                // available options for GooglePlacesDetails API : https://developers.google.com/places/web-service/details
+                                fields: 'formatted_address',
+                            }}
+                    
+                            filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
+                    
+                    
                             predefinedPlacesAlwaysVisible={true}
                              />
                             
@@ -146,6 +159,8 @@ export default class SecondPage extends Component{
                         </View>
             
                     </View>
+
+                    
 
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
@@ -189,6 +204,8 @@ export default class SecondPage extends Component{
                             </TouchableOpacity>
                             </View>
                     </View>
+
+                    
                     <View>
                         <TouchableOpacity onPress={this._Pass} style={styles.Button}>
                             <Text>
@@ -196,8 +213,11 @@ export default class SecondPage extends Component{
                             </Text>
                         </TouchableOpacity>
                     </View>
+
+                    
                 </SafeAreaView>
             </ScrollView>
+        
         )
     }
 }

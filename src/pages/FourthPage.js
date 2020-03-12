@@ -25,6 +25,7 @@ export default class FourthPage extends Component{
             colposc: '',
             hpvVaccine: '',
             pageFourValue: 0,
+            date: '',
 
             age: this.props.navigation.getParam('age', 'no_age'),  
             firstSexual: this.props.navigation.getParam('firstSexual', 'no_sexual'),
@@ -49,16 +50,16 @@ export default class FourthPage extends Component{
         }
     }
 
-    _CleanState(){
-        this.setStat({parterns: ''})
-        this.setState({condon: ''})
-        this.setState({hpvTest: ''})
-        this.setState({citoOnco: ''})
-        this.setState({colposc: ''})
-        this.setState({hpvVaccine: ''})
-    }
-
-    
+    componentDidMount() {
+        var that = this;
+        var date = new Date().getDate(); 
+        var month = new Date().getMonth() + 1; 
+        var year = new Date().getFullYear();
+        that.setState({
+          date:
+            date + '/' + month + '/' + year,
+        });
+      } 
 
     _Post_firebase(){
         let exame = {
@@ -68,6 +69,7 @@ export default class FourthPage extends Component{
             citoOnco: this.state.citoOnco,
             colposc: this.state.colposc,
             hpvVaccine: this.state.hpvVaccine,
+            date: this.state.date,
 
             age: this.state.age,
             firstSexual: this.state.firstSexual,
@@ -90,6 +92,8 @@ export default class FourthPage extends Component{
             exame
         })
     }
+
+    
   
   
     
@@ -106,16 +110,11 @@ export default class FourthPage extends Component{
 
 
     render(){
-        const { navigation } = this.props;  
-        const age = navigation.getParam('age', 'no_age');  
-        const fruit = navigation.getParam('fruits', 'no_fruits')
-
+    
         return (
             <ScrollView>
                 <SafeAreaView style = {styles.Container}>
                     <View style = {styles.QuestionsBox}>
-                        <Text>age: {JSON.stringify(age)}</Text> 
-                        <Text>fruit: {JSON.stringify(fruit)}</Text> 
                         <View style = {styles.QuestionsText}>
                             <Text style= {styles.Text}>Quantos parceiros, homens, você teve no ultimo ano?</Text>
                         </View>

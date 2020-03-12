@@ -90,13 +90,11 @@ export default class ThirdPage extends Component{
 
 
     render(){
-        const { navigation } = this.props;  
-        const infectDesease = navigation.getParam('infectDesease', 'value'); 
-
+       
         return (
             <ScrollView>
                 <SafeAreaView style = {styles.Container}>
-                    <Text>infectDesease: {JSON.stringify(infectDesease)}</Text> 
+                   
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style= {styles.Text}>Sua mãe já teve algum tipo de cancer?</Text>
