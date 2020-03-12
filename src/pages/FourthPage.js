@@ -47,8 +47,40 @@ export default class FourthPage extends Component{
             pageThreeValue: this.props.navigation.getParam('pageThreeValue', 'no_valueThree'),
 
             ResultValue: 0,
+            recomenation: []
         }
     }
+
+    recomendations(){
+        if (this.state.age == "0 a 20" && this.state.firstSexual == 'menos 20'){
+            var text = this.state.recomenation;
+            text.push('Realize exames de prevenção');
+            this.setState({recomendation: Text});
+        }else if (this.state.fruits == "nenhuma" || this.state.fruits == "menos 2"){
+            var text = this.state.recomenation;
+            text.push('Aumente a ingestão de vitaminas na dieta');
+            this.setState({recomendation: Text});
+        }else if (this.state.smoker == 'sim'){
+            var text = this.state.recomenation;
+            text.push('Reduza o consumo de cigarros');
+            this.setState({recomendation: Text});
+        }else if (this.state.condon == 'não' || this.state.condon == 'nunca'){
+            var text = this.state.recomenation;
+            text.push('Use camisinhanas relações');
+            this.setState({recomendation: Text});
+        }else if (this.state.citoOnco == "" ){
+            var text = this.state.recomenation;
+            text.push('Pesquise sobre lesão no colo uterino')
+            this.setState({recomendation: Text})
+        }else if (this.state.hpvVaccine == 'nunca'){
+            var text = this.state.recomenation;
+            text.push('A vacina contra HPV é segura e eficaz, procure seu ginecologista')
+            this.setState({recomendation: Text})
+        }else if (this.state.hpvVaccine == 'mais 5 '){
+            var text = this.state.recomenation;
+            text.push('Atualize tua vacina contra HPV')
+            this.setState({recomendation: Text})
+    }}
 
     componentDidMount() {
         var that = this;
@@ -164,39 +196,29 @@ export default class FourthPage extends Component{
 
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
-                            <Text style = {styles.Text}>Você já realizou o teste HPV? Qual o resultado?</Text>
-                        </View>
-                        <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({hpvTest: "negativo"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>negativo</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style = {styles.BigButton} onPress = {() => this.setState({hpvTest: "positivo oncogenico"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>positivo oncogenico</Text>
-                            </TouchableOpacity>
-                            </View>
-                        <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({hpvTest: "não fiz"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>não fiz</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style = {styles.BigButton} onPress = {() => this.setState({hpvTest: "positivo não oncogenico"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>positivo não oncogenico</Text>
-                            </TouchableOpacity>
-                        </View>   
-                    </View>
-
-                    <View style = {styles.QuestionsBox}>
-                        <View style = {styles.QuestionsText}>
                             <Text style = {styles.Text}>Você já fez o papanicolau? Qual o resultado?</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
                             <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({citoOnco: "não fiz"})} underlayColor="white">
                                 <Text style = {styles.ButtonText}>não fiz</Text>
                             </TouchableOpacity>
+                            <TouchableOpacity style = {styles.BigButton} onPress = {() => this.setState({citoOnco: "baixo grau"})} underlayColor="white">
+                                <Text style = {styles.ButtonText}>Lesão baixo grau</Text>
+                            </TouchableOpacity>
+                            </View>
+                            
+                        <View style = {styles.ButtonsBox}>
+                            <TouchableOpacity style = {styles.BigButton} onPress = {() => this.setState({citoOnco: "indeterminada"})} underlayColor="white">
+                                <Text style = {styles.ButtonText}>indeterminada</Text>
+                            </TouchableOpacity>
+                        
+                        </View>
+                        <View style = {styles.ButtonsBox}>
                             <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({citoOnco: "negativo"})} underlayColor="white">
                                 <Text style = {styles.ButtonText}>negativo</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({citoOnco: "positivo"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>positivo</Text>
+                            <TouchableOpacity style = {styles.BigButton} onPress = {() => this.setState({citoOnco: "alto grau"})} underlayColor="white">
+                                <Text style = {styles.ButtonText}>Lesão alto grau</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -209,14 +231,38 @@ export default class FourthPage extends Component{
                             <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({colposc: "não fiz"})} underlayColor="white">
                                 <Text style = {styles.ButtonText}>não fiz</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({colposc: "negativo"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>negativo</Text>
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({colposc: "atipica"})} underlayColor="white">
+                                <Text style = {styles.ButtonText}>Atípica</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({colposc: "positivo"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>positivo</Text>
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({colposc: "normal"})} underlayColor="white">
+                                <Text style = {styles.ButtonText}>Normal</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
+
+                    <View style = {styles.QuestionsBox}>
+                        <View style = {styles.QuestionsText}>
+                            <Text style = {styles.Text}>Você já realizou o teste HPV? Qual o resultado?</Text>
+                        </View>
+                        <View style = {styles.ButtonsBox}>
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({hpvTest: "negativo"})} underlayColor="white">
+                                <Text style = {styles.ButtonText}>negativo</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style = {styles.BigButton} onPress = {() => this.setState({hpvTest: "positivo oncogenico"})} underlayColor="white">
+                                <Text style = {styles.ButtonText}>positivo oncogenico</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style = {styles.ButtonsBox}>
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({hpvTest: "não fiz"})} underlayColor="white">
+                                <Text style = {styles.ButtonText}>não fiz</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style = {styles.BigButton} onPress = {() => this.setState({hpvTest: "positivo não oncogenico"})} underlayColor="white">
+                                <Text style = {styles.ButtonText}>positivo não oncogenico</Text>
+                            </TouchableOpacity>
+                        </View>   
+                    </View>
+
+                    
 
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
@@ -227,12 +273,12 @@ export default class FourthPage extends Component{
                                 <Text style = {styles.ButtonText}>nunca</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style = {styles.BigButton} onPress = {() => this.setState({hpvVaccine: "mais 5 anos"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>há mais de 5 anos</Text>
+                                <Text style = {styles.ButtonText}>mais 5</Text>
                             </TouchableOpacity>
                         </View>
                         <View  style = {styles.ButtonsBox}>
                             <TouchableOpacity style = {styles.BigButton} onPress = {() => this.setState({hpvVaccine: "menos 5 anos"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>há menos de 5 anos</Text>
+                                <Text style = {styles.ButtonText}>menos 5</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

@@ -22,83 +22,68 @@ export default class FirstPage extends Component{
             gesta: '',
             para: '',
             abort: '',
-            pageOneValue: 0
+            pageOneValue: '',
+
         }
     }
 
-    _CleanState(){
-        this.setState({ age: ''});
-        this.setState({firstSexual: ''});
-        this.setState({gesta: ''});
-        this.setState({para: ''})
-    };
- 
+   
 
-    _VerifyAndPass(){
-        if (this.state.age != '' && this.state.firstSexual != '' && this.state.gesta != '' && this.state.para != '' ){
-            this.props.navigation.navigate('SecondPage', {age:'0'})
-
-        }else{
-            alert("campo não preenchido")
-        }
-    }
-
-    _CalculatePage(){
+    calculatePageValue(){
+        let value = 0;
         
-        //first page
         if (this.state.age == "0 a 20"){
-            this.setState({pageOneValue: this.state.pageOneValue += 0})
+            value += 0
         }else if (this.state.age == "21 a 30"){
-            this.setState({pageOneValue: this.state.pageOneValue += 1})
+            value += 1
         }else if (this.state.age == "31 a 55"){
-            this.setState({pageOneValue:this.state. pageOneValue += 3})
+            value += 3
         }else if (this.state.age == '56 a 80'){
-            this.setState({pageOneValue: this.state.pageOneValue += 2})
+            value += 2
         }else if (this.state.age == 'mais 80'){
-            this.setState({pageOneValue: this.state.pageOneValue += 0})
+            value += 0
 
         }else if (this.state.firstSexual == 'mais 20'){
-            this.setState({pageOneValue: this.state.pageOneValue += 0})
+            value += 0
         }else if (this.state.firstSexual == 'menos 20'){
-            this.setState({pageOneValue: this.state.pageOneValue += 1})
+            value += 1
         }else if (this.state.firstSexual == 'não tive'){
-            this.setState({pageOneValue: this.state.pageOneValue += 0})
+            value += 0
 
         }else if (this.state.gesta == '0 a 2'){
-            this.setState({pageOneValue: this.state.pageOneValue += 0})
+            value += 0
         }else if (this.state.gesta == '3 a 5'){
-            this.setState({pageOneValue: this.state.pageOneValue += 1})
+            value += 1
         }else if(this.state.gesta == '6 a 8'){
-            this.setState({pageOneValue: this.state.pageOneValue += 2})
+            value += 2
         }else if(this.state.gesta == "mais 9"){
-            this.setState({pageOneValue: this.state.pageOneValue += 3})
+            value += 3
             
         }else if (this.state.para == '0 a 2'){
-            this.setState({pageOneValue: this.state.pageOneValue += 0})
+            value += 0
         }else if (this.state.para == '3 a 5'){
-            this.setState({pageOneValue: this.state.pageOneValue += 1})
+            value += 1
         }else if(this.state.para == '6 a 8'){
-            this.setState({pageOneValue: this.state.pageOneValue += 2})
+            value += 2
         }else if(this.state.para == "mais 9"){
-            this.setState({pageOneValue: this.state.pageOneValue += 3})
+            value += 3
 
-        }else if (this.state.para == '0 a 2'){
-            this.setState({pageOneValue: this.state.pageOneValue += 0})
-        }else if (this.state.para == '3 a 5'){
-            this.setState({pageOneValue: this.state.pageOneValue += 1})
-        }else if(this.state.para == '6 a 8'){
-            this.setState({pageOneValue: this.state.pageOneValue += 2})
-        }else if(this.state.para == "mais 9"){
-            this.setState({pageOneValue: this.state.pageOneValue += 3})
+        }else if (this.state.abort == '0 a 2'){
+            value += 0
+        }else if (this.state.abort == '3 a 5'){
+            value += 1
+        }else if(this.state.abort == '6 a 8'){
+            value += 2
+        }else if(this.state.abort == "mais 9"){
+            value += 3
         }
+
+        this.setState({pageOneValue: "oi"})
     
     }
 
-    _Pass = () => {
-
-        this._CalculatePage()
-        
-
+    pass = () => {
+        this.calculatePageValue()
         this.props.navigation.navigate('SecondPage', {  
             age: this.state.age,
             firstSexual: this.state.firstSexual,
@@ -109,10 +94,7 @@ export default class FirstPage extends Component{
 
         })}
 
-   
-
     render(){
-        const { navigate } = this.props.navigation; 
         return (
             <ScrollView>
                 <SafeAreaView style = {styles.Container}>
@@ -226,7 +208,7 @@ export default class FirstPage extends Component{
                         </View> 
                     </View>
                     <View>
-                        <TouchableOpacity onPress={this._Pass} style={styles.Button}>
+                        <TouchableOpacity onPress={this.pass} style={styles.Button}>
                             <Text>
                                 passar
                             </Text>

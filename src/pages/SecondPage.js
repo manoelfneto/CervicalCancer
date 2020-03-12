@@ -43,8 +43,8 @@ export default class SecondPage extends Component{
     }
 
     _CalculatePage(){
-        if (this.state.fruits == "nenuhma"){
-            this.setState({pageTwoValue: this.state.pageTwoValue += 0})
+        if (this.state.fruits == "nenhuma"){
+            this.setState({pageTwoValue: this.state.pageTwoValue += 2})
         }else if (this.state.fruits == "mais 2"){
             this.setState({pageTwoValue: this.state.pageTwoValue += 0})
         }else if (this.state.fruits == "menos 2"){
@@ -80,12 +80,16 @@ export default class SecondPage extends Component{
         })
     }
     render(){ 
+        const { navigation } = this.props;  	
+        const pageOneValue = navigation.getParam('pageOneValue', 'no_value');  
+
         return (  
             
             <ScrollView>
                 
                 <SafeAreaView style = {styles.Container}> 
                     <View style = {styles.QuestionsBox}>
+                    <Text>pageOneValue: {JSON.stringify(pageOneValue)}</Text> 
                         <View style = {styles.QuestionsText}>
                             <Text style= {styles.Text}>Quantas porções de frutas e verduras você ingere por semana?</Text>
                         </View>
