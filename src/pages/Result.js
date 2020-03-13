@@ -16,10 +16,28 @@ export default class FirstPage extends Component{
             pageTwoValue: this.props.navigation.getParam('pageTwoValue', 'no_valueTwo'),
             pageThreeValue: this.props.navigation.getParam('pageThreeValue', 'no_valueThree'),
             pageFourValue: this.props.navigation.getParam('pageFourValue', 'no_valueFour'),
-            recomendations: this.props.navigation.getParam('recomendations', "no_recomendation")
+            recomendations: this.props.navigation.getParam('recomendations', "no_recomendation"),
 
-
+            result: this.props.navigation.getParam('result', "none")
         }
+    }
+
+    calculateScore(){    
+        const totalOne = this.state.pageOneValue.reduce((a, b) => a + b);
+        const totalTwo = this.state.pageTwoValue.reduce((a, b) => a + b);
+        const totalThree = this.state.pageThreeValue.reduce((a, b) => a + b);
+        const totalFour = this.state.pageFourValue.reduce((a, b) => a + b);
+        if (this.state.pageOneValue.includes("nulo") || this.state.pageFourValue.includes("nulo")){
+            totalOne = 0;
+            totalTwo = 0;
+            totalThree = 0;
+            totalFour = 0
+        }
+        this.setState({result: totalOne + totalTwo + totalThree + totalFour }) 
+    }
+
+    componentDidMount() {
+        this.calculateScore()
     }
     
     render(){
@@ -78,31 +96,31 @@ export default class FirstPage extends Component{
                         alimentares e as consultas em dia.
                         </Text>: null }
                     
-                        {this.state.result < 11 && this.state.result <=20 ? 
+                        {this.state.result > 11 && this.state.result <=20 ? 
                         <Text style = {styles.informationText}>
                         Isso signica que, atualmente, baseado no seu estilo de vida e nas suas respostas, a chance
                         de você desenvolver cancer de colo é baixa. De qualquer maneira, é importante manter os hábitos
                         alimentares e as consultas em dia.
                         </Text>: null }
                         
-                        {this.state.result < 20 && this.state.result <=29  ? 
+                        {this.state.result > 20 && this.state.result <=29  ? 
                         <Text style = {styles.informationText}>
                         Isso signica que, atualmente, baseado no seu estilo de vida e nas suas respostas, a chance
-                        de você desenvolver cancer de colo é baixa. De qualquer maneira, é importante manter os hábitos
+                        de você desenvolver cancer de colo é moderada. De qualquer maneira, é importante manter os hábitos
                         alimentares e as consultas em dia.
                         </Text>: null }
 
-                        {this.state.result < 30 && this.state.result <=52 ? 
+                        {this.state.result > 30 && this.state.result <=52 ? 
                         <Text style = {styles.informationText}>
                         Isso signica que, atualmente, baseado no seu estilo de vida e nas suas respostas, a chance
-                        de você desenvolver cancer de colo é baixa. De qualquer maneira, é importante manter os hábitos
+                        de você desenvolver cancer de colo é alta. De qualquer maneira, é importante manter os hábitos
                         alimentares e as consultas em dia.
                         </Text>: null }
 
-                        {this.state.result < 52 ? 
+                        {this.state.result > 52 ? 
                         <Text style = {styles.informationText}>
                         Isso signica que, atualmente, baseado no seu estilo de vida e nas suas respostas, a chance
-                        de você desenvolver cancer de colo é baixa. De qualquer maneira, é importante manter os hábitos
+                        de você desenvolver cancer de colo é muito alta. De qualquer maneira, é importante manter os hábitos
                         alimentares e as consultas em dia.
                         </Text>: null }
                 
@@ -140,7 +158,7 @@ const styles = StyleSheet.create({
     },
 
     ResultText:{
-        fontSize: 24,
+        fontSize: 30,
         fontWeight: 'bold',
         color: 'green'
 

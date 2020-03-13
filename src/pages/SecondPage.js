@@ -29,6 +29,7 @@ export default class SecondPage extends Component{
             para: this.props.navigation.getParam('para', 'no_para'),
             abort: this.props.navigation.getParam('abort', "no_abort"),
             pageOneValue: this.props.navigation.getParam('pageOneValue', "no_value"),
+            null: this.props.navigation.getParam("null", 'none')
 
         }
     }
@@ -99,6 +100,7 @@ export default class SecondPage extends Component{
     render(){ 
         const { navigation } = this.props;  	
         const pageOneValue = navigation.getParam('pageOneValue', 'pageOneValue');  
+        const nulo = navigation.getParam("nulo", 'none')
 
         return (  
             
@@ -107,6 +109,7 @@ export default class SecondPage extends Component{
                 <SafeAreaView style = {styles.Container}> 
                     <View style = {styles.QuestionsBox}>
                     <Text>pageOneValue: {JSON.stringify(pageOneValue)}</Text> 	
+                    <Text>nulo: {JSON.stringify(nulo)}</Text> 	
 
                         <View style = {styles.QuestionsText}>
                             <Text style= {styles.Text}>Quantas porções de frutas e verduras você ingere por semana?</Text>

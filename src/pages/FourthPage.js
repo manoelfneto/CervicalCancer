@@ -46,7 +46,6 @@ export default class FourthPage extends Component{
             cort: this.props.navigation.getParam('cort', 'no_cort'),
             pageThreeValue: this.props.navigation.getParam('pageThreeValue', 'no_valueThree'),
 
-            ResultValue: 0,
             recomendations: []
         }
     }
@@ -94,26 +93,30 @@ export default class FourthPage extends Component{
             this.addScore(3)
         }if (this.state.hpvTest == "positivo não oncogenico"){
             this.addScore(1)
+        }if (this.state.hpvTest == 'negativo' && (this.state.age == '31 a 55' || this.state.age == '56 a 80' || this.state.age == 'mais 80' )){
+            this.addScore('nulo')
 
         }if (this.state.hpvVaccine == 'nunca'){
             this.addScore(1)
+        }if (this.state.hpvVaccine == 'menos 5' && this.state.age == '0 a 20'){
+            this.addScore('nulo')
         }
     }
 
     recomendations(){
         if (this.state.age == "0 a 20" && this.state.firstSexual == 'menos 20'){
-            this.addRecomendation(1);
+            this.addRecomendation("Realize exames de prevenção");
         }if (this.state.fruits == "nenhuma" || this.state.fruits == "menos 2"){
             this.addRecomendation('Aumente a ingestão de vitaminas na dieta');
         }if (this.state.smoker == 'sim'){
             this.addRecomendation('Reduza o consumo de cigarros');
         }if (this.state.condon == 'não' || this.state.condon == 'nunca'){
-            this.addRecomendation('Use camisinhanas nas relações');
+            this.addRecomendation('Use camisinha nas relações');
         }if (this.state.citoOnco == "" ){
             this.addRecomendation('Pesquise sobre lesão no colo uterino')
         }if (this.state.hpvVaccine == 'nunca'){
             this.addRecomendation('A vacina contra HPV é segura e eficaz, procure seu ginecologista')
-        }if (this.state.hpvVaccine == 'mais 5 '){
+        }if (this.state.hpvVaccine == 'mais 5'){
             this.addRecomendation('Atualize sua vacina contra HPV')
     }}
 
@@ -164,11 +167,12 @@ export default class FourthPage extends Component{
         dbRef.push({
             exame
         })
-       
    
     }
 
     pass = () => {
+
+       
         this.recomendations()
         this.calculatePage()
         this.props.navigation.navigate('Result', {
@@ -176,7 +180,8 @@ export default class FourthPage extends Component{
             pageTwoValue: this.state.pageTwoValue,
             pageThreeValue: this.state.pageThreeValue,
             pageFourValue: this.state.pageFourValue,
-            recomendations: this.state.recomendations
+            recomendations: this.state.recomendations,
+            //result: this.state.result
         })
        this._Post_firebase()
 
@@ -322,12 +327,12 @@ export default class FourthPage extends Component{
                             <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({hpvVaccine: "nunca"})} underlayColor="white">
                                 <Text style = {styles.ButtonText}>nunca</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.BigButton} onPress = {() => this.setState({hpvVaccine: "mais 5 anos"})} underlayColor="white">
+                            <TouchableOpacity style = {styles.BigButton} onPress = {() => this.setState({hpvVaccine: "mais 5"})} underlayColor="white">
                                 <Text style = {styles.ButtonText}>mais 5</Text>
                             </TouchableOpacity>
                         </View>
                         <View  style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.BigButton} onPress = {() => this.setState({hpvVaccine: "menos 5 anos"})} underlayColor="white">
+                            <TouchableOpacity style = {styles.BigButton} onPress = {() => this.setState({hpvVaccine: "menos 5"})} underlayColor="white">
                                 <Text style = {styles.ButtonText}>menos 5</Text>
                             </TouchableOpacity>
                         </View>

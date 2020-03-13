@@ -51,7 +51,7 @@ export default class FirstPage extends Component{
         }if (this.state.firstSexual == 'menos 20'){
             this.addScore(1)
         }if (this.state.firstSexual == 'não tive'){
-            this.addScore(0)
+            this.addScore("nulo")
 
         }if (this.state.gesta == '0 a 2'){
             this.addScore(0)
@@ -94,7 +94,6 @@ export default class FirstPage extends Component{
             para: this.state.para,
             abort: this.state.abort,
             pageOneValue: this.state.pageOneValue,
-            x: this.state.x
 
         })}
 
