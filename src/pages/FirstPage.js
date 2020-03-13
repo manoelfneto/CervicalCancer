@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Button } from 'react-native';
-import database from '@react-native-firebase/database';
 
 export default class FirstPage extends Component{
     static navigationOptions = ({ navigation }) => {    
@@ -22,63 +21,67 @@ export default class FirstPage extends Component{
             gesta: '',
             para: '',
             abort: '',
-            pageOneValue: '',
+            pageOneValue: [],
 
         }
     }
 
-   
+    addScore(score){
+        var arr = this.state.pageOneValue;
+        arr.push(score);
+        this.setState({pageOneValue: arr});
+    }
 
     calculatePageValue(){
         let value = 0;
         
         if (this.state.age == "0 a 20"){
-            value += 0
-        }else if (this.state.age == "21 a 30"){
-            value += 1
-        }else if (this.state.age == "31 a 55"){
-            value += 3
-        }else if (this.state.age == '56 a 80'){
-            value += 2
-        }else if (this.state.age == 'mais 80'){
-            value += 0
+            this.addScore(0)
+        }if (this.state.age == "21 a 30"){
+            this.addScore(1)
+        }if (this.state.age == "31 a 55"){
+            this.addScore(3)
+        }if (this.state.age == '56 a 80'){
+            this.addScore(2)
+        }if (this.state.age == 'mais 80'){
+            this.addScore(0)
 
-        }else if (this.state.firstSexual == 'mais 20'){
-            value += 0
-        }else if (this.state.firstSexual == 'menos 20'){
-            value += 1
-        }else if (this.state.firstSexual == 'não tive'){
-            value += 0
+        }if (this.state.firstSexual == 'mais 20'){
+            this.addScore(0)
+        }if (this.state.firstSexual == 'menos 20'){
+            this.addScore(1)
+        }if (this.state.firstSexual == 'não tive'){
+            this.addScore(0)
 
-        }else if (this.state.gesta == '0 a 2'){
-            value += 0
-        }else if (this.state.gesta == '3 a 5'){
-            value += 1
-        }else if(this.state.gesta == '6 a 8'){
-            value += 2
-        }else if(this.state.gesta == "mais 9"){
-            value += 3
+        }if (this.state.gesta == '0 a 2'){
+            this.addScore(0)
+        }if (this.state.gesta == '3 a 5'){
+            this.addScore(1)
+        }if(this.state.gesta == '6 a 8'){
+            this.addScore(2)
+        }if(this.state.gesta == "mais 9"){
+            this.addScore(3)
             
-        }else if (this.state.para == '0 a 2'){
-            value += 0
-        }else if (this.state.para == '3 a 5'){
-            value += 1
-        }else if(this.state.para == '6 a 8'){
-            value += 2
-        }else if(this.state.para == "mais 9"){
-            value += 3
+        }if (this.state.para == '0 a 2'){
+            this.addScore(0)
+        }if (this.state.para == '3 a 5'){
+            this.addScore(1)
+        }if(this.state.para == '6 a 8'){
+            this.addScore(2)
+        }if(this.state.para == "mais 9"){
+            this.addScore(3)
 
-        }else if (this.state.abort == '0 a 2'){
-            value += 0
-        }else if (this.state.abort == '3 a 5'){
-            value += 1
-        }else if(this.state.abort == '6 a 8'){
-            value += 2
-        }else if(this.state.abort == "mais 9"){
-            value += 3
+        }if (this.state.abort == '0 a 2'){
+            this.addScore(0)
+        }if (this.state.abort == '3 a 5'){
+            this.addScore(1)
+        }if(this.state.abort == '6 a 8'){
+            this.addScore(2)
+        }if(this.state.abort == "mais 9"){
+            this.addScore(3)
         }
 
-        this.setState({pageOneValue: "oi"})
+        //this.setState({pageOneValue: value})
     
     }
 
@@ -90,7 +93,8 @@ export default class FirstPage extends Component{
             gesta: this.state.gesta,
             para: this.state.para,
             abort: this.state.abort,
-            pageOneValue: this.state.pageOneValue
+            pageOneValue: this.state.pageOneValue,
+            x: this.state.x
 
         })}
 

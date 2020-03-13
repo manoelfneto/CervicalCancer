@@ -24,7 +24,7 @@ export default class FourthPage extends Component{
             citoOnco: '',
             colposc: '',
             hpvVaccine: '',
-            pageFourValue: 0,
+            pageFourValue: [],
             date: '',
 
             age: this.props.navigation.getParam('age', 'no_age'),  
@@ -47,39 +47,74 @@ export default class FourthPage extends Component{
             pageThreeValue: this.props.navigation.getParam('pageThreeValue', 'no_valueThree'),
 
             ResultValue: 0,
-            recomenation: []
+            recomendations: []
+        }
+    }
+
+    addScore (score){
+        var arr = this.state.pageFourValue;
+        arr.push(score);
+        this.setState({pageFourValue: arr});
+    }
+
+    addRecomendation (phrase){
+        var tex = this.state.recomendations;
+        tex.push(phrase);
+        this.setState({recomendations: tex})
+    }
+
+    calculatePage(){
+        if (this.state.parterns == '1 a 5'){
+            this.addScore(1)
+        }if (this.state.parterns == "6 a 10") {
+            this.addScore(2)
+        }if (this.state.parterns == "11 a 20"){
+            this.addScore(3)
+        }if (this.state.parterns == "mais 20") {
+            this.addScore(4)
+
+        }if (this.state.condon == 'sim'){
+            this.addScore(1)
+        }if (this.state.condon == "não"){
+            this.addScore(2)
+        }if (this.state.condon == 'nunca'){
+            this.addScore(3)
+
+        }if (this.state.citoOnco == 'baixo grau' && (this.state.age == '31 a 55' || this.state.age == '56 a 80' || this.state.age == 'mais 80' )){
+            this.addScore(1)
+        }if (this.state.citoOnco == 'alto grau' && (this.state.age == '31 a 55' || this.state.age == '56 a 80' || this.state.age == 'mais 80' )){
+            this.addScore(2)
+        }if (this.state.citoOnco == 'alto grau' && (this.state.age == '0 a 20' || this.state.age == '21 a 30')){
+            this.addScore(1)
+
+        }if (this.state.colposc == 'atipica'){
+            this.addScore(1)
+
+        }if (this.state.hpvTest == "positivo oncogenico"){
+            this.addScore(3)
+        }if (this.state.hpvTest == "positivo não oncogenico"){
+            this.addScore(1)
+
+        }if (this.state.hpvVaccine == 'nunca'){
+            this.addScore(1)
         }
     }
 
     recomendations(){
         if (this.state.age == "0 a 20" && this.state.firstSexual == 'menos 20'){
-            var text = this.state.recomenation;
-            text.push('Realize exames de prevenção');
-            this.setState({recomendation: Text});
-        }else if (this.state.fruits == "nenhuma" || this.state.fruits == "menos 2"){
-            var text = this.state.recomenation;
-            text.push('Aumente a ingestão de vitaminas na dieta');
-            this.setState({recomendation: Text});
-        }else if (this.state.smoker == 'sim'){
-            var text = this.state.recomenation;
-            text.push('Reduza o consumo de cigarros');
-            this.setState({recomendation: Text});
-        }else if (this.state.condon == 'não' || this.state.condon == 'nunca'){
-            var text = this.state.recomenation;
-            text.push('Use camisinhanas relações');
-            this.setState({recomendation: Text});
-        }else if (this.state.citoOnco == "" ){
-            var text = this.state.recomenation;
-            text.push('Pesquise sobre lesão no colo uterino')
-            this.setState({recomendation: Text})
-        }else if (this.state.hpvVaccine == 'nunca'){
-            var text = this.state.recomenation;
-            text.push('A vacina contra HPV é segura e eficaz, procure seu ginecologista')
-            this.setState({recomendation: Text})
-        }else if (this.state.hpvVaccine == 'mais 5 '){
-            var text = this.state.recomenation;
-            text.push('Atualize tua vacina contra HPV')
-            this.setState({recomendation: Text})
+            this.addRecomendation(1);
+        }if (this.state.fruits == "nenhuma" || this.state.fruits == "menos 2"){
+            this.addRecomendation('Aumente a ingestão de vitaminas na dieta');
+        }if (this.state.smoker == 'sim'){
+            this.addRecomendation('Reduza o consumo de cigarros');
+        }if (this.state.condon == 'não' || this.state.condon == 'nunca'){
+            this.addRecomendation('Use camisinhanas nas relações');
+        }if (this.state.citoOnco == "" ){
+            this.addRecomendation('Pesquise sobre lesão no colo uterino')
+        }if (this.state.hpvVaccine == 'nunca'){
+            this.addRecomendation('A vacina contra HPV é segura e eficaz, procure seu ginecologista')
+        }if (this.state.hpvVaccine == 'mais 5 '){
+            this.addRecomendation('Atualize sua vacina contra HPV')
     }}
 
     componentDidMount() {
@@ -93,6 +128,7 @@ export default class FourthPage extends Component{
         });
       } 
 
+  
     _Post_firebase(){
         let exame = {
             parterns: this.state.parterns,
@@ -101,6 +137,7 @@ export default class FourthPage extends Component{
             citoOnco: this.state.citoOnco,
             colposc: this.state.colposc,
             hpvVaccine: this.state.hpvVaccine,
+            //pageFourValue: this.state.pageFourValue,
             date: this.state.date,
 
             age: this.state.age,
@@ -108,44 +145,57 @@ export default class FourthPage extends Component{
             gesta: this.state.gesta,
             para: this.state.para,
             abort: this.state.abort,
+            //pageOneValue: this.state.pageOneValue,
 
             fruits: this.state.fruits,
             city: this.state.city,
             infectDesease: this.state.infectDesease,
             smoker: this.state.smoker,
+            //pageTwoValue: this.state.pageTwoValue,
 
             MotherCancer: this.state.MotherCancer,
             FatherCancer: this.state.FatherCancer,
             HASorDM: this.state.HASorDM,
-            cort: this.state.cort
+            cort: this.state.cort,
+            //pageThreeValue: this.state.pageThreeValue,
         }
         let dbRef = database().ref('exames')
+
         dbRef.push({
             exame
         })
-    }
-
-    
-  
-  
-    
-    _VerifyQuestions(){
-        this._Post_firebase();
-        navigation.navigate('SecondPage')
-    };
-
-    _GoResult(){
-        this.props.navigation.navigate('FourthPage', {  
-            ResultValue: this.state.ResultValue})
-    }
+       
    
+    }
 
+    pass = () => {
+        this.recomendations()
+        this.calculatePage()
+        this.props.navigation.navigate('Result', {
+            pageOneValue: this.state.pageOneValue,
+            pageTwoValue: this.state.pageTwoValue,
+            pageThreeValue: this.state.pageThreeValue,
+            pageFourValue: this.state.pageFourValue,
+            recomendations: this.state.recomendations
+        })
+       this._Post_firebase()
+
+    }
 
     render(){
+        const { navigation } = this.props;  
+        const pageOneValue = navigation.getParam('pageOneValue', 'pageOneValue');  
+        const pageTwoValue = navigation.getParam('pageTwoValue', 'pageTwoValue'); 
+        const pageThreeValue = navigation.getParam('pageThreeValue', 'pageThreeValue'); 
+
     
         return (
             <ScrollView>
                 <SafeAreaView style = {styles.Container}>
+                <Text>pageOneValue: {JSON.stringify(pageOneValue)}</Text> 	
+                <Text>pageTwoValue: {JSON.stringify(pageTwoValue)}</Text> 
+                <Text>pageThreeValue: {JSON.stringify(pageThreeValue)}</Text> 
+
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style= {styles.Text}>Quantos parceiros, homens, você teve no ultimo ano?</Text>
@@ -283,7 +333,7 @@ export default class FourthPage extends Component{
                         </View>
                     </View>
                     <View>
-                        <TouchableOpacity onPress={this._Post_firebase.bind(this)} style={styles.Button}> 
+                        <TouchableOpacity onPress={this.pass} style={styles.Button}> 
                             <Text>Finalizar</Text>
                         </TouchableOpacity>
                     </View>

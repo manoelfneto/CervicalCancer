@@ -21,20 +21,23 @@ export default class SecondPage extends Component{
             city: '',
             infectDesease: [],
             smoker: '',
-            pageTwoValue: 0,
+            pageTwoValue: [],
 
             age: this.props.navigation.getParam('age', 'no_age'),  
             firstSexual: this.props.navigation.getParam('firstSexual', 'no_sexual'),
             gesta: this.props.navigation.getParam('gesta', 'no_gesta'),
             para: this.props.navigation.getParam('para', 'no_para'),
             abort: this.props.navigation.getParam('abort', "no_abort"),
-            pageOneValue: this.props.navigation.getParam('pageOneValue', "no_value")
+            pageOneValue: this.props.navigation.getParam('pageOneValue', "no_value"),
+
         }
     }
 
-    _VerifyQuestions(){
-        navigation.navigate('ThirdPage')
-    };
+    addScore(score){
+        var arr = this.state.pageTwoValue;
+        arr.push(score);
+        this.setState({pageTwoValue: arr});
+    }
 
     _AddInfect(desease){
         var arr = this.state.infectDesease;
@@ -44,25 +47,39 @@ export default class SecondPage extends Component{
 
     _CalculatePage(){
         if (this.state.fruits == "nenhuma"){
-            this.setState({pageTwoValue: this.state.pageTwoValue += 2})
-        }else if (this.state.fruits == "mais 2"){
-            this.setState({pageTwoValue: this.state.pageTwoValue += 0})
-        }else if (this.state.fruits == "menos 2"){
-            this.setState({pageTwoValue: this.state.pageTwoValue += 1})
+            this.addScore(2)
+        } if (this.state.fruits == "mais 2"){
+            this.addScore(0)
+        } if (this.state.fruits == "menos 2"){
+            this.addScore(1)
 
 
-        }else if (this.state.smoker == 'sim' ){
-            this.setState({pageTwoValue: this.state.pageTwoValue += 2})
-        }else if (this.state.smoker == "não"){
-            this.setState({pageTwoValue: this.state.pageTwoValue += 1})
-        }else if (this.state.smoker == "nunca"){
-            this.setState({pageTwoValue: this.state.pageTwoValue += 0})
+        } if (this.state.smoker == 'sim' ){
+            this.addScore(2)
+        } if (this.state.smoker == "não"){
+            this.addScore(1)
+        } if (this.state.smoker == "nunca"){
+            this.addScore(0)
+
+        } if (this.state.infectDesease.includes("nenhum")){
+            this.addScore(0)
+        }if  (this.state.infectDesease.includes("aids")) {
+            this.addScore(3)
+        }if (this.state.infectDesease.includes("hepatite")){
+            this.addScore(2)
+        } if (this.state.infectDesease.includes("gonorreia")) {
+            this.addScore(2)
+        }if (this.state.infectDesease.includes("sifilis")){
+            this.addScore(3)
+
         }
+   
 
 
     }
    
     _Pass = () => {
+        this._CalculatePage()
         this.props.navigation.navigate('ThirdPage', {  
             fruits: this.state.fruits,
             city: this.state.city,
@@ -81,7 +98,7 @@ export default class SecondPage extends Component{
     }
     render(){ 
         const { navigation } = this.props;  	
-        const pageOneValue = navigation.getParam('pageOneValue', 'no_value');  
+        const pageOneValue = navigation.getParam('pageOneValue', 'pageOneValue');  
 
         return (  
             
@@ -89,7 +106,8 @@ export default class SecondPage extends Component{
                 
                 <SafeAreaView style = {styles.Container}> 
                     <View style = {styles.QuestionsBox}>
-                    <Text>pageOneValue: {JSON.stringify(pageOneValue)}</Text> 
+                    <Text>pageOneValue: {JSON.stringify(pageOneValue)}</Text> 	
+
                         <View style = {styles.QuestionsText}>
                             <Text style= {styles.Text}>Quantas porções de frutas e verduras você ingere por semana?</Text>
                         </View>
@@ -175,7 +193,7 @@ export default class SecondPage extends Component{
                                 <Text style = {styles.ButtonText}>AIDS</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style = {styles.Button} onPress = {() => this._AddInfect('hepatite')} underlayColor="white">
-                                <Text style = {styles.ButtonText}>hepatite</Text>
+                                <Text style = {styles.ButtonText}>hepatite B</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style = {styles.Button} onPress = {() => this._AddInfect('sifilis')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>siflis</Text>

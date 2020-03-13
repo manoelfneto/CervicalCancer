@@ -20,7 +20,7 @@ export default class ThirdPage extends Component{
             FatherCancer: [],
             HASorDM: [],
             cort: '',
-            pageThreeValue: 0,
+            pageThreeValue: [],
 
             fruits: this.props.navigation.getParam('fruits', 'no_fruits'),
             city: this.props.navigation.getParam('city', 'no_city'),
@@ -37,10 +37,47 @@ export default class ThirdPage extends Component{
         }
     };
 
+    addScore(score){
+        var arr = this.state.pageThreeValue;
+        arr.push(score);
+        this.setState({pageThreeValue: arr});
+    }
+
+
     _CalculatePage(){
-        this.setState({pageValue: pageValue + this.state.cancerFamily.length})
-        this.setState({pageValue: pageValue + this.state.kindOfCancer.length})
-        this.setState({pageValue: pageValue + this.state.HASorDM.length})
+        if (this.state.MotherCancer.includes("nenhum")){
+            this.addScore(0)
+        }if (this.state.MotherCancer.includes('mama')){
+            this.addScore(1)
+        } if (this.state.MotherCancer.includes('tireoide')){
+            this.addScore(1)
+        }if (this.state.MotherCancer.includes('intestino')){
+            this.addScore(1)
+        }if (this.state.MotherCancer.includes('utero')){
+            this.addScore(1)
+        
+        }if (this.state.MotherCancer.includes('nenhum')){
+                this.addScore(1)
+        }if (this.state.FatherCancer.includes('tireoide')){
+            this.addScore(1)
+        }if (this.state.MotherCancer.includes('mama')){
+            this.addScore(1)
+        }if (this.state.MotherCancer.includes('intestino')){
+            this.addScore(1)
+        
+        }if (this.state.HASorDM.includes("nenhum")){
+            this.addScore(1)
+        }if (this.state.HASorDM.includes("diabetes")){
+            this.addScore(1)
+        }if (this.state.HASorDM.includes("hipert")){
+            this.addScore(1)
+
+        }if (this.state.cort == "sim"){
+            this.addScore(1)
+        }if (this.state.cort == "nao"){
+            this.addScore(0)
+        }
+
 
         
         
@@ -65,12 +102,13 @@ export default class ThirdPage extends Component{
     }
 
     _Pass = () => {
+        this._CalculatePage()
         this.props.navigation.navigate('FourthPage', {  
             MotherCancer: this.state.MotherCancer,
             FatherCancer: this.state.FatherCancer,
             HASorDM: this.state.HASorDM,
             cort: this.state.cort,
-            pageThreeValue: this.state.pageTwoValue,
+            pageThreeValue: this.state.pageThreeValue,
 
             age: this.state.age,
             firstSexual: this.state.firstSexual,
@@ -90,11 +128,17 @@ export default class ThirdPage extends Component{
 
 
     render(){
+        const { navigation } = this.props;  
+        const pageOneValue = navigation.getParam('pageOneValue', 'pageOneValue');  
+        const pageTwoValue = navigation.getParam('pageTwoValue', 'pageTwoValue');  
+
        
         return (
             <ScrollView>
                 <SafeAreaView style = {styles.Container}>
-                   
+                <Text>pageOneValue: {JSON.stringify(pageOneValue)}</Text> 	
+                <Text>pageTwoValue: {JSON.stringify(pageTwoValue)}</Text> 	
+
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style= {styles.Text}>Sua mãe já teve algum tipo de cancer?</Text>
@@ -154,7 +198,7 @@ export default class ThirdPage extends Component{
                                 <Text style = {styles.ButtonText}>diabetes</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style = {styles.Button} onPress = {() => this.AddHasOrDm('nenhuma')} underlayColor="white">
-                                <Text style = {styles.ButtonText}>nenhuma</Text>
+                                <Text style = {styles.ButtonText}>nenhum</Text>
                             </TouchableOpacity>
                             </View>  
                     </View>

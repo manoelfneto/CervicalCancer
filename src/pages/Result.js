@@ -12,20 +12,35 @@ export default class FirstPage extends Component{
     constructor(props) {
         super(props)
         this.state = {
-            result: this.props.navigation.getParam('result', 'no_result')
+            pageOneValue: this.props.navigation.getParam('pageOneValue', 'no_valueOne'),
+            pageTwoValue: this.props.navigation.getParam('pageTwoValue', 'no_valueTwo'),
+            pageThreeValue: this.props.navigation.getParam('pageThreeValue', 'no_valueThree'),
+            pageFourValue: this.props.navigation.getParam('pageFourValue', 'no_valueFour'),
+            recomendations: this.props.navigation.getParam('recomendations', "no_recomendation")
+
+
         }
     }
-      
-
-    _VerifyQuestions(){
-        navigation.navigate('SecondPage')
-    };
-   
-
-
+    
     render(){
+
+        const { navigation } = this.props;  
+        const pageOneValue = navigation.getParam('pageOneValue', 'pageOneValue');	
+        const pageTwoValue = navigation.getParam('pageTwoValue', 'pageTwoValue'); 
+        const pageThreeValue = navigation.getParam('pageThreeValue', 'pageThreeValue'); 
+        const pageFourValue = navigation.getParam('pageFourValue', 'pageFourValue');
+        const recomendations = navigation.getParam('recomendations', 'recomendations'); 
+ 
+        
+
+
         return (
             <SafeAreaView style = {styles.Container}>
+                <Text>pageOneValue: {JSON.stringify(pageOneValue)}</Text> 
+                <Text>pageTwoValue: {JSON.stringify(pageTwoValue)}</Text> 
+                <Text>pageThreeValue: {JSON.stringify(pageThreeValue)}</Text> 
+                <Text>pageFourValue: {JSON.stringify(pageFourValue)}</Text> 
+                <Text>recomendations: {JSON.stringify(recomendations)}</Text> 
                 <View style = {styles.Result}>
                     {this.state.result <= 11 ? 
                         <Text style = {styles.ResultText}>
