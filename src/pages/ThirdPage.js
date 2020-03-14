@@ -128,16 +128,12 @@ export default class ThirdPage extends Component{
 
 
     render(){
-        const { navigation } = this.props;  
-        const pageOneValue = navigation.getParam('pageOneValue', 'pageOneValue');  
-        const pageTwoValue = navigation.getParam('pageTwoValue', 'pageTwoValue');  
-
+      
        
         return (
             <ScrollView>
                 <SafeAreaView style = {styles.Container}>
-                <Text>pageOneValue: {JSON.stringify(pageOneValue)}</Text> 	
-                <Text>pageTwoValue: {JSON.stringify(pageTwoValue)}</Text> 	
+                
 
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>

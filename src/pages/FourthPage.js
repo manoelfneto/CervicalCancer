@@ -188,18 +188,13 @@ export default class FourthPage extends Component{
     }
 
     render(){
-        const { navigation } = this.props;  
-        const pageOneValue = navigation.getParam('pageOneValue', 'pageOneValue');  
-        const pageTwoValue = navigation.getParam('pageTwoValue', 'pageTwoValue'); 
-        const pageThreeValue = navigation.getParam('pageThreeValue', 'pageThreeValue'); 
+      
 
     
         return (
             <ScrollView>
                 <SafeAreaView style = {styles.Container}>
-                <Text>pageOneValue: {JSON.stringify(pageOneValue)}</Text> 	
-                <Text>pageTwoValue: {JSON.stringify(pageTwoValue)}</Text> 
-                <Text>pageThreeValue: {JSON.stringify(pageThreeValue)}</Text> 
+               
 
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
@@ -258,7 +253,7 @@ export default class FourthPage extends Component{
                                 <Text style = {styles.ButtonText}>não fiz</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style = {styles.BigButton} onPress = {() => this.setState({citoOnco: "baixo grau"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>Lesão baixo grau</Text>
+                                <Text style = {styles.ButtonText}>lesão baixo grau</Text>
                             </TouchableOpacity>
                             </View>
                             
@@ -273,7 +268,7 @@ export default class FourthPage extends Component{
                                 <Text style = {styles.ButtonText}>negativo</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style = {styles.BigButton} onPress = {() => this.setState({citoOnco: "alto grau"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>Lesão alto grau</Text>
+                                <Text style = {styles.ButtonText}>lesão alto grau</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

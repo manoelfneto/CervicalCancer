@@ -98,9 +98,7 @@ export default class SecondPage extends Component{
         })
     }
     render(){ 
-        const { navigation } = this.props;  	
-        const pageOneValue = navigation.getParam('pageOneValue', 'pageOneValue');  
-        const nulo = navigation.getParam("nulo", 'none')
+        
 
         return (  
             
@@ -108,8 +106,7 @@ export default class SecondPage extends Component{
                 
                 <SafeAreaView style = {styles.Container}> 
                     <View style = {styles.QuestionsBox}>
-                    <Text>pageOneValue: {JSON.stringify(pageOneValue)}</Text> 	
-                    <Text>nulo: {JSON.stringify(nulo)}</Text> 	
+    	
 
                         <View style = {styles.QuestionsText}>
                             <Text style= {styles.Text}>Quantas porções de frutas e verduras você ingere por semana?</Text>
