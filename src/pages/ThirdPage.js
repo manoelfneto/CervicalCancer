@@ -216,11 +216,7 @@ export default class ThirdPage extends Component{
                                 <Text style = {styles.ButtonText}>não</Text>
                             </TouchableOpacity>
                         </View> 
-                        <TouchableOpacity onPress={this.pass} style={styles.Button}>
-                            <Text>
-                                passar
-                            </Text>
-                        </TouchableOpacity>
+                        
                     </View>
                 </SafeAreaView>
             </ScrollView>

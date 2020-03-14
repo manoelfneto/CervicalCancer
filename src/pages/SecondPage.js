@@ -231,16 +231,7 @@ export default class SecondPage extends Component{
                             </View>
                     </View>
 
-                    
-                    <View>
-                        <TouchableOpacity onPress={this.pass} style={styles.Button}>
-                            <Text>
-                                passar
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
-
-                    
+                 
                 </SafeAreaView>
             </ScrollView>
         

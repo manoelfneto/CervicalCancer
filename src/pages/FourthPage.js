@@ -335,11 +335,7 @@ export default class FourthPage extends Component{
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <View>
-                        <TouchableOpacity onPress={this.finish} style={styles.Button}> 
-                            <Text>Finalizar</Text>
-                        </TouchableOpacity>
-                    </View>
+                   
 
                 </SafeAreaView>
             </ScrollView>
