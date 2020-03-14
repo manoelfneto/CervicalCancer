@@ -22,8 +22,8 @@ export default class Main extends Component{
             <View style = { styles.container}>
                 <View style = {styles.presentation}>
                     <Text style = {styles.PresentationText}>
-                        O Cervical Cancer Risk é um aplicativo criado para medir o seu risco de desenvolver cancer de 
-                        colo, baseado em algumas respostas sobre seus hábitos, histórico familiar e saúde. 
+                        Este aplicativo foi criado para medir o seu risco de desenvolver câncer de 
+                        colo uterino, baseado em respostas sobre você. 
                         O teste é realizado em menos de 2 minutos.
                     </Text>
                     <Text style = {styles.TextRemeber}>

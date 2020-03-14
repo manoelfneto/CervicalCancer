@@ -112,7 +112,7 @@ export default class FourthPage extends Component{
             this.addRecomendation('Reduza o consumo de cigarros');
         }if (this.state.condon == 'não' || this.state.condon == 'nunca'){
             this.addRecomendation('Use camisinha nas relações');
-        }if (this.state.citoOnco == "" ){
+        }if (this.state.colposc == "atipica" ){
             this.addRecomendation('Pesquise sobre lesão no colo uterino')
         }if (this.state.hpvVaccine == 'nunca'){
             this.addRecomendation('A vacina contra HPV é segura e eficaz, procure seu ginecologista')
@@ -287,7 +287,7 @@ export default class FourthPage extends Component{
                                 <Text style = {styles.ButtonText}>não fiz</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({colposc: "atipica"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>Atípica</Text>
+                                <Text style = {styles.ButtonText}>atípica</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({colposc: "normal"})} underlayColor="white">
                                 <Text style = {styles.ButtonText}>Normal</Text>

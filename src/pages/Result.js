@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Button } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Button, FlatList, List, ListItem } from 'react-native';
+
 
 export default class FirstPage extends Component{
     static navigationOptions = ({ navigation }) => {
@@ -22,18 +23,17 @@ export default class FirstPage extends Component{
         }
     }
 
-    calculateScore(){    
+    calculateScore(){ 
+        
+        if (this.state.pageOneValue.includes("nulo") || this.state.pageFourValue.includes("nulo")){
+            this.setState({result: 0})
+        }else{
         const totalOne = this.state.pageOneValue.reduce((a, b) => a + b);
         const totalTwo = this.state.pageTwoValue.reduce((a, b) => a + b);
         const totalThree = this.state.pageThreeValue.reduce((a, b) => a + b);
         const totalFour = this.state.pageFourValue.reduce((a, b) => a + b);
-        if (this.state.pageOneValue.includes("nulo") || this.state.pageFourValue.includes("nulo")){
-            totalOne = 0;
-            totalTwo = 0;
-            totalThree = 0;
-            totalFour = 0
-        }
-        this.setState({result: totalOne + totalTwo + totalThree + totalFour }) 
+        
+        this.setState({result: totalOne + totalTwo + totalThree + totalFour })} 
     }
 
     componentDidMount() {
@@ -41,12 +41,7 @@ export default class FirstPage extends Component{
     }
     
     render(){
-
         const { navigation } = this.props;  
-        const pageOneValue = navigation.getParam('pageOneValue', 'pageOneValue');	
-        const pageTwoValue = navigation.getParam('pageTwoValue', 'pageTwoValue'); 
-        const pageThreeValue = navigation.getParam('pageThreeValue', 'pageThreeValue'); 
-        const pageFourValue = navigation.getParam('pageFourValue', 'pageFourValue');
         const recomendations = navigation.getParam('recomendations', 'recomendations'); 
  
         
@@ -54,11 +49,7 @@ export default class FirstPage extends Component{
 
         return (
             <SafeAreaView style = {styles.Container}>
-                <Text>pageOneValue: {JSON.stringify(pageOneValue)}</Text> 
-                <Text>pageTwoValue: {JSON.stringify(pageTwoValue)}</Text> 
-                <Text>pageThreeValue: {JSON.stringify(pageThreeValue)}</Text> 
-                <Text>pageFourValue: {JSON.stringify(pageFourValue)}</Text> 
-                <Text>recomendations: {JSON.stringify(recomendations)}</Text> 
+                
                 <View style = {styles.Result}>
                     {this.state.result <= 11 ? 
                         <Text style = {styles.ResultText}>
@@ -92,41 +83,49 @@ export default class FirstPage extends Component{
                     {this.state.result < 11 ? 
                         <Text style = {styles.informationText}>
                         Isso signica que, atualmente, baseado no seu estilo de vida e nas suas respostas, a chance
-                        de você desenvolver cancer de colo é muito baixa. De qualquer maneira, é importante manter os hábitos
-                        alimentares e as consultas em dia.
+                        de você desenvolver cancer de colo uterino é muito baixa. 
                         </Text>: null }
                     
                         {this.state.result > 11 && this.state.result <=20 ? 
                         <Text style = {styles.informationText}>
                         Isso signica que, atualmente, baseado no seu estilo de vida e nas suas respostas, a chance
-                        de você desenvolver cancer de colo é baixa. De qualquer maneira, é importante manter os hábitos
-                        alimentares e as consultas em dia.
+                        de você desenvolver cancer de colo uterino é baixa.
                         </Text>: null }
                         
                         {this.state.result > 20 && this.state.result <=29  ? 
                         <Text style = {styles.informationText}>
                         Isso signica que, atualmente, baseado no seu estilo de vida e nas suas respostas, a chance
-                        de você desenvolver cancer de colo é moderada. De qualquer maneira, é importante manter os hábitos
-                        alimentares e as consultas em dia.
+                        de você desenvolver cancer de colo é moderada. Se atente as recomendações.
                         </Text>: null }
 
                         {this.state.result > 30 && this.state.result <=52 ? 
                         <Text style = {styles.informationText}>
                         Isso signica que, atualmente, baseado no seu estilo de vida e nas suas respostas, a chance
-                        de você desenvolver cancer de colo é alta. De qualquer maneira, é importante manter os hábitos
-                        alimentares e as consultas em dia.
+                        de você desenvolver cancer de colo é alta. Se atente as recomendações.
                         </Text>: null }
 
                         {this.state.result > 52 ? 
                         <Text style = {styles.informationText}>
                         Isso signica que, atualmente, baseado no seu estilo de vida e nas suas respostas, a chance
-                        de você desenvolver cancer de colo é muito alta. De qualquer maneira, é importante manter os hábitos
-                        alimentares e as consultas em dia.
+                        de você desenvolver cancer de colo é muito alta. Se atente as recomendações.
                         </Text>: null }
                 
+                    
+                </View>
+
+                <View style = {styles.informations}>
+                    {this.state.recomendations.lenght != 0 ?
+                    
+                    <FlatList
+                    data = {recomendations}
+                    keyExtractor={item => item.key}
+                    renderItem={({item}) => <Text style = {styles.Recomend}>{item}</Text>}
+                    >
+                    </FlatList>: null }
+
                     <Text style = {styles.informationText}>
                         <Text style = {{fontWeight: 'bold'}}>Lembre-se</Text>, qualquer tipo de lesão deve ser tratada, procure um médico ginecologista.
-                    </Text>
+                    </Text>                       
                 </View>
 
 
@@ -168,14 +167,22 @@ const styles = StyleSheet.create({
         marginTop: 40,
         marginLeft: 20,
         marginRight: 20,
-        marginBottom: 40,
+        marginBottom: 0,
 
     },
 
     informationText: {
         fontSize: 16,
-        marginBottom: 30,
+        marginTop:20,
+        marginBottom: 10,
         textAlign: 'justify'
+    },
+
+    Recomend: {
+        fontSize: 16,
+        marginBottom: 10,
+        textAlign: 'justify'
+
     },
 
 
@@ -186,6 +193,7 @@ const styles = StyleSheet.create({
     },
 
     ButtonBox: {
+        marginTop: 30,
         justifyContent: 'center',
         alignItems: 'center'
     },

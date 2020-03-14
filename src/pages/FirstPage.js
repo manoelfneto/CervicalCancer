@@ -138,7 +138,7 @@ export default class FirstPage extends Component{
                                 <Text style = {styles.ButtonText}>mais 20</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({firstSexual: "não tive"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>Não tive</Text>
+                                <Text style = {styles.ButtonText}>não tive</Text>
                             </TouchableOpacity>
                             </View>
             
