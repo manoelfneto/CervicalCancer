@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, TextInput } from 'react-native';
-import { GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 export default class SecondPage extends Component{
     static navigationOptions = ({ navigation }) => {
