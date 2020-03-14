@@ -49,6 +49,7 @@ export default class FirstPage extends Component{
 
         return (
             <SafeAreaView style = {styles.Container}>
+
                 
                 <View style = {styles.Result}>
                     {this.state.result <= 11 ? 

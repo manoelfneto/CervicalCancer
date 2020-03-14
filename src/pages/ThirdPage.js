@@ -6,7 +6,7 @@ export default class ThirdPage extends Component{
         let headerStyle = {backgroundColor: '#32CD32' };
         let headerTintColor= '#FFFFFF';
         let headerRight = (
-            <TouchableOpacity onPress = { () => navigation.navigate('FourthPage')} style = {styles.buttonHeader}>
+            <TouchableOpacity onPress = { navigation.getParam('pass') } style = {styles.buttonHeader}>
                 <Text style = {{fontSize: 20, color: 'white', fontWeight: 'bold'}}>Proximo</Text>
             </TouchableOpacity>
         )
@@ -101,7 +101,7 @@ export default class ThirdPage extends Component{
         this.setState({HASorDM: arr});
     }
 
-    _Pass = () => {
+    pass = () => {
         this._CalculatePage()
         this.props.navigation.navigate('FourthPage', {  
             MotherCancer: this.state.MotherCancer,
@@ -124,6 +124,11 @@ export default class ThirdPage extends Component{
             pageTwoValue: this.state.pageTwoValue
 
         })}
+
+    componentDidMount() {
+        this.props.navigation.setParams( { pass: this.pass } )
+
+    }
 
 
 
@@ -211,7 +216,7 @@ export default class ThirdPage extends Component{
                                 <Text style = {styles.ButtonText}>não</Text>
                             </TouchableOpacity>
                         </View> 
-                        <TouchableOpacity onPress={this._Pass} style={styles.Button}>
+                        <TouchableOpacity onPress={this.pass} style={styles.Button}>
                             <Text>
                                 passar
                             </Text>

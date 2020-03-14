@@ -8,7 +8,7 @@ export default class FourthPage extends Component{
         let headerStyle = {backgroundColor: '#4B0082' };
         let headerTintColor= '#FFFFFF';
         let headerRight = (
-            <TouchableOpacity onPress = { () => navigation.navigate('Result')} style = {styles.buttonHeader}>
+            <TouchableOpacity onPress = { navigation.getParam('finish') } style = {styles.buttonHeader}>
                 <Text style = {{fontSize: 20, color: 'white', fontWeight: 'bold'}}>Finalizar</Text>
             </TouchableOpacity>
         )
@@ -120,16 +120,7 @@ export default class FourthPage extends Component{
             this.addRecomendation('Atualize sua vacina contra HPV')
     }}
 
-    componentDidMount() {
-        var that = this;
-        var date = new Date().getDate(); 
-        var month = new Date().getMonth() + 1; 
-        var year = new Date().getFullYear();
-        that.setState({
-          date:
-            date + '/' + month + '/' + year,
-        });
-      } 
+    
 
   
     _Post_firebase(){
@@ -170,7 +161,7 @@ export default class FourthPage extends Component{
    
     }
 
-    pass = () => {
+    finish = () => {
 
        
         this.recomendations()
@@ -186,6 +177,18 @@ export default class FourthPage extends Component{
        this._Post_firebase()
 
     }
+
+    componentDidMount() {
+        var that = this;
+        var date = new Date().getDate(); 
+        var month = new Date().getMonth() + 1; 
+        var year = new Date().getFullYear();
+        that.setState({
+          date:
+            date + '/' + month + '/' + year,
+        });
+        this.props.navigation.setParams( { finish: this.finish } )
+      } 
 
     render(){
       
@@ -333,7 +336,7 @@ export default class FourthPage extends Component{
                         </View>
                     </View>
                     <View>
-                        <TouchableOpacity onPress={this.pass} style={styles.Button}> 
+                        <TouchableOpacity onPress={this.finish} style={styles.Button}> 
                             <Text>Finalizar</Text>
                         </TouchableOpacity>
                     </View>

@@ -7,7 +7,7 @@ export default class SecondPage extends Component{
         let headerStyle = {backgroundColor: '#FFAA00' };
         let headerTintColor= '#FFFFFF';
         let headerRight = (
-            <TouchableOpacity onPress = { () => navigation.navigate('ThirdPage')} style = {styles.buttonHeader}>
+            <TouchableOpacity onPress = { navigation.getParam('pass') } style = {styles.buttonHeader}>
                 <Text style = {{fontSize: 20, color: 'white', fontWeight: 'bold'}}>Proximo</Text>
             </TouchableOpacity>
         )
@@ -79,7 +79,7 @@ export default class SecondPage extends Component{
 
     }
    
-    _Pass = () => {
+    pass = () => {
         this._CalculatePage()
         this.props.navigation.navigate('ThirdPage', {  
             fruits: this.state.fruits,
@@ -97,14 +97,18 @@ export default class SecondPage extends Component{
 
         })
     }
+
+    componentDidMount() {
+        this.props.navigation.setParams( { pass: this.pass } )
+
+    }
     render(){ 
-        
 
         return (  
             
             <ScrollView>
                 
-                <SafeAreaView style = {styles.Container}> 
+                <SafeAreaView style = {styles.Container}>
                     <View style = {styles.QuestionsBox}>
     	
 
@@ -229,7 +233,7 @@ export default class SecondPage extends Component{
 
                     
                     <View>
-                        <TouchableOpacity onPress={this._Pass} style={styles.Button}>
+                        <TouchableOpacity onPress={this.pass} style={styles.Button}>
                             <Text>
                                 passar
                             </Text>

@@ -6,7 +6,7 @@ export default class FirstPage extends Component{
         let headerStyle = {backgroundColor: '#0099FF' };
         let headerTintColor= '#FFFFFF';
         let headerRight = (
-            <TouchableOpacity onPress = { () => navigation.navigate('SecondPage')}  style = {styles.buttonHeader}>
+            <TouchableOpacity onPress = { navigation.getParam('pass')}  style = {styles.buttonHeader}>
                 <Text style = {{fontSize: 20, color: 'white', fontWeight: 'bold'}}>Proximo</Text>
             </TouchableOpacity>
         )
@@ -96,6 +96,12 @@ export default class FirstPage extends Component{
             pageOneValue: this.state.pageOneValue,
 
         })}
+
+    componentDidMount() {
+        this.props.navigation.setParams( { pass: this.pass } )
+
+    }
+
 
     render(){
         return (
@@ -209,13 +215,6 @@ export default class FirstPage extends Component{
                                 <Text style = {styles.ButtonText}>mais 9</Text>
                             </TouchableOpacity>
                         </View> 
-                    </View>
-                    <View>
-                        <TouchableOpacity onPress={this.pass} style={styles.Button}>
-                            <Text>
-                                passar
-                            </Text>
-                        </TouchableOpacity>
                     </View>
                 </SafeAreaView>
             </ScrollView>
