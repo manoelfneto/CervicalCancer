@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Button } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Button, Alert } from 'react-native';
 import database from '@react-native-firebase/database';
 
 
@@ -47,6 +47,14 @@ export default class FourthPage extends Component{
             pageThreeValue: this.props.navigation.getParam('pageThreeValue', 'no_valueThree'),
 
             recomendations: []
+        }
+    }
+
+    validationToPass(){
+        if(this.state.parterns == '' || this.state.condon == '' || this.state.hpvTest == '' || this.state.citoOnco == '' || this.state.colposc == '' || this.state.hpvVaccine == ''){
+            Alert.alert("você esqueceu de responder alguma pergunta")
+        }else{
+            return true
         }
     }
 
@@ -158,17 +166,22 @@ export default class FourthPage extends Component{
     }
 
     finish = () => {
-        this.recomendations()
-        this.calculatePage()
-        this.props.navigation.navigate('Result', {
+        if (this.validationToPass() != true) {
+
+        }else {
+            this.recomendations()
+            this.calculatePage()
+            this.props.navigation.navigate('Result', {
             pageOneValue: this.state.pageOneValue,
             pageTwoValue: this.state.pageTwoValue,
             pageThreeValue: this.state.pageThreeValue,
             pageFourValue: this.state.pageFourValue,
             recomendations: this.state.recomendations,
             //result: this.state.result
-        })
-       this.postFirebase()
+            })
+            this.postFirebase()
+        }
+        
     }
 
     componentDidMount() {

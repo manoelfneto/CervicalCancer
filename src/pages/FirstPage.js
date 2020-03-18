@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Button } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Button, Alert } from 'react-native';
 
 export default class FirstPage extends Component{
     static navigationOptions = ({ navigation }) => {    
@@ -30,6 +30,14 @@ export default class FirstPage extends Component{
         var arr = this.state.pageOneValue;
         arr.push(score);
         this.setState({pageOneValue: arr});
+    }
+
+    validationToPass(){
+        if(this.state.age == '' || this.state.firstSexual == '' || this.state.gesta == '' || this.state.abort == '' || this.state.para == ""){
+            Alert.alert("você esqueceu de responder alguma pergunta")
+        }else{
+            return true
+        }
     }
 
     calculatePageValue(){
@@ -83,8 +91,11 @@ export default class FirstPage extends Component{
     }
 
     pass = () => {
-        this.calculatePageValue()
-        this.props.navigation.navigate('SecondPage', {  
+        if (this.validationToPass() != true){
+
+        }else{
+            this.calculatePageValue()
+            this.props.navigation.navigate('SecondPage', {  
             age: this.state.age,
             firstSexual: this.state.firstSexual,
             gesta: this.state.gesta,
@@ -92,7 +103,10 @@ export default class FirstPage extends Component{
             abort: this.state.abort,
             pageOneValue: this.state.pageOneValue,
 
-        })}
+        })
+
+        }
+        }
 
     componentDidMount() {
         this.props.navigation.setParams( { pass: this.pass } )

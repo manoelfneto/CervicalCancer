@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, TextInput } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, TextInput, Alert } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 export default class SecondPage extends Component{
@@ -30,6 +30,14 @@ export default class SecondPage extends Component{
             abort: this.props.navigation.getParam('abort', "no_abort"),
             pageOneValue: this.props.navigation.getParam('pageOneValue', "no_value"),
             null: this.props.navigation.getParam("null", 'none')
+        }
+    }
+
+    validationToPass(){
+        if(this.state.fruits == '' || this.state.infectDesease == [] || this.state.smoker == ''){
+            Alert.alert("você esqueceu de responder alguma pergunta")
+        }else{
+            return true
         }
     }
 
@@ -76,8 +84,11 @@ export default class SecondPage extends Component{
     }
    
     pass = () => {
-        this.calculatePage()
-        this.props.navigation.navigate('ThirdPage', {  
+        if (this.validationToPass() != true){
+
+        }else {
+            this.calculatePage()
+            this.props.navigation.navigate('ThirdPage', {  
             fruits: this.state.fruits,
             city: this.state.city,
             infectDesease: this.state.infectDesease,
@@ -91,6 +102,9 @@ export default class SecondPage extends Component{
             abort: this.state.abort,
             pageOneValue: this.state.pageOneValue
         })
+
+        }
+        
     }
 
     componentDidMount() {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Button } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Button, Alert } from 'react-native';
 
 export default class ThirdPage extends Component{
     static navigationOptions = ({ navigation }) => {
@@ -41,6 +41,14 @@ export default class ThirdPage extends Component{
         var arr = this.state.pageThreeValue;
         arr.push(score);
         this.setState({pageThreeValue: arr});
+    }
+
+    validationToPass(){
+        if(this.state.MotherCancer == [] || this.state.FatherCancer == [] || this.state.HASorDM == [] || this.state.cort == ''){
+            Alert.alert("você esqueceu de responder alguma pergunta")
+        }else{
+            return true
+        }
     }
 
     calculatePage(){
@@ -97,8 +105,11 @@ export default class ThirdPage extends Component{
     }
 
     pass = () => {
-        this.calculatePage()
-        this.props.navigation.navigate('FourthPage', {  
+        if (this.validationToPass() != true){
+
+        }else{
+            this.calculatePage()
+            this.props.navigation.navigate('FourthPage', {  
             MotherCancer: this.state.MotherCancer,
             FatherCancer: this.state.FatherCancer,
             HASorDM: this.state.HASorDM,
@@ -117,7 +128,9 @@ export default class ThirdPage extends Component{
             infectDesease: this.state.infectDesease,
             smoker: this.state.smoker,
             pageTwoValue: this.state.pageTwoValue
-        })}
+        })
+        }
+        }
 
     componentDidMount() {
         this.props.navigation.setParams( { pass: this.pass } )
