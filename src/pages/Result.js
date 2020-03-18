@@ -43,14 +43,9 @@ export default class FirstPage extends Component{
     render(){
         const { navigation } = this.props;  
         const recomendations = navigation.getParam('recomendations', 'recomendations'); 
- 
-        
-
 
         return (
-            <SafeAreaView style = {styles.Container}>
-
-                
+            <SafeAreaView style = {styles.Container}>       
                 <View style = {styles.Result}>
                     {this.state.result <= 11 ? 
                         <Text style = {styles.ResultText}>
@@ -75,9 +70,7 @@ export default class FirstPage extends Component{
                     {this.state.result > 52 ?
                         <Text style = {styles.ResultText}>
                         Muito Alto
-                    </Text>: null }
-
-                    
+                    </Text>: null }        
                 </View>
 
                 <View style = {styles.informations}>
@@ -109,26 +102,21 @@ export default class FirstPage extends Component{
                         <Text style = {styles.informationText}>
                         Isso signica que, atualmente, baseado no seu estilo de vida e nas suas respostas, a chance
                         de você desenvolver cancer de colo é muito alta. Se atente as recomendações.
-                        </Text>: null }
-                
-                    
+                        </Text>: null }                 
                 </View>
 
                 <View style = {styles.informations}>
-                    {this.state.recomendations.lenght != 0 ?
-                    
+                    {this.state.recomendations.lenght != 0 ?     
                     <FlatList
                     data = {recomendations}
                     keyExtractor={item => item.key}
                     renderItem={({item}) => <Text style = {styles.Recomend}>{item}</Text>}
                     >
                     </FlatList>: null }
-
                     <Text style = {styles.informationText}>
                         <Text style = {{fontWeight: 'bold'}}>Lembre-se</Text>, qualquer tipo de lesão deve ser tratada, procure um médico ginecologista.
                     </Text>                       
                 </View>
-
 
                 <View style= {styles.ButtonBox} >
                     <TouchableOpacity onPress = { () => this.props.navigation.navigate('main')} style = {styles.Button}>
@@ -147,21 +135,18 @@ const styles = StyleSheet.create({
     Container: {
         flex: 1,
         backgroundColor: 'white'
-
     },
 
     Result: {
         marginTop: 40,
         alignItems: 'center',
         justifyContent: 'center'
-
     },
 
     ResultText:{
         fontSize: 30,
         fontWeight: 'bold',
         color: 'green'
-
     },
 
     informations: {
@@ -169,7 +154,6 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginRight: 20,
         marginBottom: 0,
-
     },
 
     informationText: {
@@ -183,14 +167,12 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginBottom: 10,
         textAlign: 'justify'
-
     },
 
 
     Text: {
         fontSize: 24,
         textAlign: 'center'
-
     },
 
     ButtonBox: {
@@ -209,7 +191,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 20,
-
     },
 
     ButtonText: {
@@ -217,7 +198,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: "#F0E68C"
     }
-
 })
 
 

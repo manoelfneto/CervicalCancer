@@ -30,7 +30,6 @@ export default class SecondPage extends Component{
             abort: this.props.navigation.getParam('abort', "no_abort"),
             pageOneValue: this.props.navigation.getParam('pageOneValue', "no_value"),
             null: this.props.navigation.getParam("null", 'none')
-
         }
     }
 
@@ -40,13 +39,13 @@ export default class SecondPage extends Component{
         this.setState({pageTwoValue: arr});
     }
 
-    _AddInfect(desease){
+    addInfect(desease){
         var arr = this.state.infectDesease;
         arr.push(desease);
         this.setState({infectDesease: arr})
     }
 
-    _CalculatePage(){
+    calculatePage(){
         if (this.state.fruits == "nenhuma"){
             this.addScore(2)
         } if (this.state.fruits == "mais 2"){
@@ -74,13 +73,10 @@ export default class SecondPage extends Component{
             this.addScore(3)
 
         }
-   
-
-
     }
    
     pass = () => {
-        this._CalculatePage()
+        this.calculatePage()
         this.props.navigation.navigate('ThirdPage', {  
             fruits: this.state.fruits,
             city: this.state.city,
@@ -94,7 +90,6 @@ export default class SecondPage extends Component{
             para: this.state.para,
             abort: this.state.abort,
             pageOneValue: this.state.pageOneValue
-
         })
     }
 
@@ -103,15 +98,10 @@ export default class SecondPage extends Component{
 
     }
     render(){ 
-
-        return (  
-            
-            <ScrollView>
-                
+        return (         
+            <ScrollView>          
                 <SafeAreaView style = {styles.Container}>
                     <View style = {styles.QuestionsBox}>
-    	
-
                         <View style = {styles.QuestionsText}>
                             <Text style= {styles.Text}>Quantas porções de frutas e verduras você ingere por semana?</Text>
                         </View>
@@ -127,7 +117,6 @@ export default class SecondPage extends Component{
                             </TouchableOpacity>
                             </View>
                     </View>
-
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style = {styles.Text}>Em qual cidade voce mora?</Text>
@@ -158,9 +147,7 @@ export default class SecondPage extends Component{
                               predefinedPlacesDescription: {
                                 color: '#1faadb',
                               },
-                            }}
-                    
-                           
+                            }}                   
                             nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
                             GoogleReverseGeocodingQuery={{
                               // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
@@ -175,45 +162,36 @@ export default class SecondPage extends Component{
                                 fields: 'formatted_address',
                             }}
                     
-                            filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
-                    
-                    
+                            filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities                    
                             predefinedPlacesAlwaysVisible={true}
-                             />
-                            
-                            
+                             />               
                         </View>
-            
                     </View>
-
-                    
-
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style = {styles.Text}>Você tem alguma dessas doenças?</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this._AddInfect('aids')} underlayColor="white">
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addInfect('aids')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>AIDS</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this._AddInfect('hepatite')} underlayColor="white">
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addInfect('hepatite')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>hepatite B</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this._AddInfect('sifilis')} underlayColor="white">
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addInfect('sifilis')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>siflis</Text>
                             </TouchableOpacity>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this._AddInfect('gonorreia')} underlayColor="white">
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addInfect('gonorreia')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>gonorreia</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this._AddInfect('nenhuma')} underlayColor="white">
+                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addInfect('nenhuma')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>nenhuma</Text>
                             </TouchableOpacity>
 
                         </View>   
                     </View>
-
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style = {styles.Text}>Você fuma?</Text>
@@ -229,12 +207,9 @@ export default class SecondPage extends Component{
                                 <Text style = {styles.ButtonText}>nunca</Text>
                             </TouchableOpacity>
                             </View>
-                    </View>
-
-                 
+                    </View>          
                 </SafeAreaView>
             </ScrollView>
-        
         )
     }
 }
@@ -243,13 +218,11 @@ const styles = StyleSheet.create({
     buttonHeader: {
         marginRight: 20,
         fontSize: 30
-
     },
 
     Container: {
         flex: 1,
         backgroundColor: 'white'
-
     },
 
     QuestionsBox: {
@@ -258,8 +231,7 @@ const styles = StyleSheet.create({
         marginTop: 16,
         marginLeft: 16,
         marginRight: 16,
-        marginBottom: 32
-        
+        marginBottom: 32      
     },
 
     QuestionsText:{
@@ -267,13 +239,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 24,
-
     },
 
     Text: {
         fontSize: 24,
         textAlign: 'center'
-
     },
 
     ButtonsBox: {
@@ -282,7 +252,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
         marginBottom: 32,
-
     },
 
     Button: {
@@ -295,7 +264,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 20,
-
     },
 
     ButtonText:{
@@ -311,8 +279,6 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         fontSize: 10
     }
-    
-
 })
 
 

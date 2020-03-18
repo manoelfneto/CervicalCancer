@@ -80,9 +80,6 @@ export default class FirstPage extends Component{
         }if(this.state.abort == "mais 9"){
             this.addScore(3)
         }
-
-        //this.setState({pageOneValue: value})
-    
     }
 
     pass = () => {
@@ -101,7 +98,6 @@ export default class FirstPage extends Component{
         this.props.navigation.setParams( { pass: this.pass } )
 
     }
-
 
     render(){
         return (
@@ -131,7 +127,6 @@ export default class FirstPage extends Component{
                             </TouchableOpacity>
                         </View>   
                     </View>
-
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style = {styles.Text}>Com quantos anos você teve sua primeira Relação Sexual?</Text>
@@ -147,9 +142,7 @@ export default class FirstPage extends Component{
                                 <Text style = {styles.ButtonText}>não tive</Text>
                             </TouchableOpacity>
                             </View>
-            
                     </View>
-
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style = {styles.Text}>Quantas gestações você teve?</Text>
@@ -172,7 +165,6 @@ export default class FirstPage extends Component{
             
                         </View>   
                     </View>
-
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style = {styles.Text}>Quantos partos você teve?</Text>
@@ -194,7 +186,6 @@ export default class FirstPage extends Component{
                             </TouchableOpacity>
                         </View> 
                     </View>
-
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style = {styles.Text}>Quantos abortos você teve?</Text>
@@ -231,7 +222,6 @@ const styles = StyleSheet.create({
     Container: {
         flex: 1,
         backgroundColor: 'white'
-
     },
 
     QuestionsBox: {
@@ -240,22 +230,18 @@ const styles = StyleSheet.create({
         marginTop: 16,
         marginLeft: 16,
         marginRight: 16,
-        marginBottom: 32
-        
+        marginBottom: 32      
     },
 
     QuestionsText:{
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 24,
-
-
     },
 
     Text: {
         fontSize: 24,
         textAlign: 'center'
-
     },
 
     ButtonsBox: {
@@ -264,7 +250,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
         marginBottom: 32,
-
     },
 
     Button: {
@@ -277,15 +262,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 20,
-
     },
 
     ButtonText:{
         color: '#0099FF',
         fontSize: 20,
     }
-    
-
 })
 
 

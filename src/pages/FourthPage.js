@@ -119,11 +119,8 @@ export default class FourthPage extends Component{
         }if (this.state.hpvVaccine == 'mais 5'){
             this.addRecomendation('Atualize sua vacina contra HPV')
     }}
-
-    
-
-  
-    _Post_firebase(){
+ 
+    postFirebase(){
         let exame = {
             parterns: this.state.parterns,
             condon: this.state.condon,
@@ -157,13 +154,10 @@ export default class FourthPage extends Component{
 
         dbRef.push({
             exame
-        })
-   
+        }) 
     }
 
     finish = () => {
-
-       
         this.recomendations()
         this.calculatePage()
         this.props.navigation.navigate('Result', {
@@ -174,8 +168,7 @@ export default class FourthPage extends Component{
             recomendations: this.state.recomendations,
             //result: this.state.result
         })
-       this._Post_firebase()
-
+       this.postFirebase()
     }
 
     componentDidMount() {
@@ -190,15 +183,10 @@ export default class FourthPage extends Component{
         this.props.navigation.setParams( { finish: this.finish } )
       } 
 
-    render(){
-      
-
-    
+    render(){    
         return (
             <ScrollView>
                 <SafeAreaView style = {styles.Container}>
-               
-
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style= {styles.Text}>Quantos parceiros, homens, você teve no ultimo ano?</Text>
@@ -223,7 +211,6 @@ export default class FourthPage extends Component{
                             </TouchableOpacity>
                         </View>   
                     </View>
-
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style = {styles.Text}>Você usa preservativo?</Text>
@@ -244,9 +231,7 @@ export default class FourthPage extends Component{
                                 <Text style = {styles.ButtonText}>nunca</Text>
                             </TouchableOpacity>
                         </View>
-            
                     </View>
-
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style = {styles.Text}>Você já fez o papanicolau? Qual o resultado?</Text>
@@ -258,13 +243,11 @@ export default class FourthPage extends Component{
                             <TouchableOpacity style = {styles.BigButton} onPress = {() => this.setState({citoOnco: "baixo grau"})} underlayColor="white">
                                 <Text style = {styles.ButtonText}>lesão baixo grau</Text>
                             </TouchableOpacity>
-                            </View>
-                            
+                            </View>    
                         <View style = {styles.ButtonsBox}>
                             <TouchableOpacity style = {styles.BigButton} onPress = {() => this.setState({citoOnco: "indeterminada"})} underlayColor="white">
                                 <Text style = {styles.ButtonText}>indeterminada</Text>
                             </TouchableOpacity>
-                        
                         </View>
                         <View style = {styles.ButtonsBox}>
                             <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({citoOnco: "negativo"})} underlayColor="white">
@@ -275,7 +258,6 @@ export default class FourthPage extends Component{
                             </TouchableOpacity>
                         </View>
                     </View>
-
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style = {styles.Text}>Você já fez a colposcopia? Qual o resultado?</Text>
@@ -292,7 +274,6 @@ export default class FourthPage extends Component{
                             </TouchableOpacity>
                         </View>
                     </View>
-
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style = {styles.Text}>Você já realizou o teste HPV? Qual o resultado?</Text>
@@ -314,9 +295,6 @@ export default class FourthPage extends Component{
                             </TouchableOpacity>
                         </View>   
                     </View>
-
-                    
-
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style = {styles.Text}>Você já tomou a vacina contra HPV?</Text>
@@ -335,26 +313,20 @@ export default class FourthPage extends Component{
                             </TouchableOpacity>
                         </View>
                     </View>
-                   
-
                 </SafeAreaView>
             </ScrollView>
         )
     }
 }
-
 const styles = StyleSheet.create({
-
     buttonHeader: {
         marginRight: 20,
         fontSize: 30
-
     },
 
     Container: {
         flex: 1,
         backgroundColor: 'white'
-
     },
 
     QuestionsBox: {
@@ -362,8 +334,7 @@ const styles = StyleSheet.create({
         marginTop: 16,
         marginLeft: 16,
         marginRight: 16,
-        marginBottom: 32
-        
+        marginBottom: 32      
     },
 
     QuestionsText:{
@@ -372,13 +343,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginLeft: 30,
         marginBottom: 24,
-
     },
 
     Text: {
         fontSize: 24,
         textAlign: 'center'
-
     },
 
     ButtonsBox: {
@@ -387,7 +356,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
         marginBottom: 32,
-
     },
 
     Button: {
@@ -400,7 +368,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 20,
-
     },
 
     BigButton: {
@@ -413,16 +380,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 20,
-
-
     },
 
     ButtonText:{
         color: '#4B0082',
         fontSize: 20,
     }
-    
-
 })
 
 
