@@ -192,7 +192,7 @@ export default class ThirdPage extends Component{
                         </View>
                         <View style = {styles.ButtonsBox}>
                             <TouchableOpacity style = {styles.Button} onPress = {() => this.addHasOrDm('hipert')} underlayColor="white">
-                                <Text style = {styles.ButtonText}>hipert</Text>
+                                <Text style = {styles.ButtonText}>hipert.</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style = {styles.Button} onPress = {() => this.addHasOrDm('diabetes')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>diabetes</Text>

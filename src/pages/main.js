@@ -24,7 +24,7 @@ export default class Main extends Component{
                     <Text style = {styles.PresentationText}>
                         Este aplicativo foi criado para medir o seu risco de desenvolver câncer de 
                         colo uterino, baseado em respostas sobre você. 
-                        O teste é realizado em menos de 2 minutos.
+                        O teste é realizado em menos de 2 minutos. Preste bastante atenção às alternativas.
                     </Text>
                     <Text style = {styles.TextRemeber}>
                         <Text style = {{fontWeight: 'bold'}}>Lembre-se</Text>, esse teste não substitue a consulta presencial ao ginecologista.

@@ -34,7 +34,7 @@ export default class FirstPage extends Component{
 
     validationToPass(){
         if(this.state.age == '' || this.state.firstSexual == '' || this.state.gesta == '' || this.state.abort == '' || this.state.para == ""){
-            Alert.alert("você esqueceu de responder alguma pergunta")
+            Alert.alert("Você esqueceu de responder alguma pergunta")
         }else{
             return true
         }
@@ -146,7 +146,7 @@ export default class FirstPage extends Component{
                             <Text style = {styles.Text}>Com quantos anos você teve sua primeira Relação Sexual?</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({firstSexual: "menos 20"})} underlayColor="white">
+                            <TouchableOpacity style = {styles.ButtonAdaptive} onPress = {() => this.setState({firstSexual: "menos 20"})} underlayColor="white">
                                 <Text style = {styles.ButtonText}>menos 20</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({firstSexual: "mais 20"})} underlayColor="white">
@@ -276,6 +276,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 20,
+    },
+
+    ButtonAdaptive: {
+        borderColor: "#0099FF",
+        borderWidth: 3,
+        borderRadius: 40,
+        backgroundColor: 'white',
+        width: 110,
+        height: 32,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 20,
+
     },
 
     ButtonText:{

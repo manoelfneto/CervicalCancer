@@ -189,16 +189,16 @@ export default class SecondPage extends Component{
                             <TouchableOpacity style = {styles.Button} onPress = {() => this.addInfect('aids')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>AIDS</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addInfect('hepatite')} underlayColor="white">
-                                <Text style = {styles.ButtonText}>hepatite B</Text>
+                            <TouchableOpacity style = {styles.ButtonAdaptive} onPress = {() => this.addInfect('hepatite')} underlayColor="white">
+                                <Text style = {styles.ButtonTextAdptive}>hepatite B</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style = {styles.Button} onPress = {() => this.addInfect('sifilis')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>siflis</Text>
                             </TouchableOpacity>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addInfect('gonorreia')} underlayColor="white">
-                                <Text style = {styles.ButtonText}>gonorreia</Text>
+                            <TouchableOpacity style = {styles.ButtonAdaptive} onPress = {() => this.addInfect('gonorreia')} underlayColor="white">
+                                <Text style = {styles.ButtonTextAdptive}>gonorreia</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style = {styles.Button} onPress = {() => this.addInfect('nenhuma')} underlayColor="white">
                                 <Text style = {styles.ButtonText}>nenhuma</Text>
@@ -280,9 +280,30 @@ const styles = StyleSheet.create({
         marginRight: 20,
     },
 
+    ButtonAdaptive: {
+        borderColor: "#FFAA00",
+        borderWidth: 3,
+        borderRadius: 40,
+        backgroundColor: 'white',
+        width: 'auto',
+        height: 32,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 20,
+
+    },
+
     ButtonText:{
         color: '#FFAA00',
         fontSize: 20,
+    },
+
+    ButtonTextAdptive: {
+        color: '#FFAA00',
+        fontSize: 20,
+        marginLeft:8,
+        marginRight: 8
+
     },
 
     TextInput: {
