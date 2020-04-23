@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import database from '@react-native-firebase/database';
+import { View, Text, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 
 export default class Main extends Component{
     static navigationOptions = {
@@ -15,7 +14,7 @@ export default class Main extends Component{
             flex:1     
             },        
     };
-
+ 
     
     render() {
         return(
@@ -31,7 +30,7 @@ export default class Main extends Component{
                     </Text>
                 </View>
                 <View style = {styles.ButtonBox}>
-                    <TouchableOpacity style = {styles.Button} onPress = {() => {this.props.navigation.navigate('FirstPage')}}>
+                    <TouchableOpacity style = {styles.Button} onPress = { () => this.props.navigation.navigate('FirstPage')}>
                         <Text style = {styles.TextButton}>Iniciar Teste</Text>
                     </TouchableOpacity>
                 </View>

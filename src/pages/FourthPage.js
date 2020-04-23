@@ -121,7 +121,7 @@ export default class FourthPage extends Component{
         }if (this.state.condon == 'não' || this.state.condon == 'nunca'){
             this.addRecomendation('Use camisinha nas relações');
         }if (this.state.colposc == "atipica" ){
-            this.addRecomendation('Pesquise sobre lesão no colo uterino')
+            this.addRecomendation('Pesquise um pouco mais sobre a lesão no colo')
         }if (this.state.hpvVaccine == 'nunca'){
             this.addRecomendation('A vacina contra HPV é segura e eficaz, procure seu ginecologista')
         }if (this.state.hpvVaccine == 'mais 5'){
@@ -201,22 +201,22 @@ export default class FourthPage extends Component{
                             <Text style= {styles.Text}>Quantos parceiros, homens, você teve no ultimo ano?</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({parterns: "1 a 5"})}  underlayColor="black">
-                                <Text style = {styles.ButtonText}>1 a 5</Text>
+                            <TouchableOpacity style = {this.state.parterns == '1 a 5' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({parterns: "1 a 5"})}>
+                                <Text style = {this.state.parterns == "1 a 5" ? styles.ButtonTextClicked: styles.ButtonText}>1 a 5</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({parterns: "6 a 10"})}  underlayColor="white">
-                                <Text style = {styles.ButtonText}>6 a 10</Text>
+                            <TouchableOpacity style = {this.state.parterns == '6 a 10' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({parterns: "6 a 10"})}>
+                                <Text style = {this.state.parterns == "6 a 10" ? styles.ButtonTextClicked: styles.ButtonText}>6 a 10</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({parterns: "11 a 20"})}  underlayColor="white">
-                                <Text style = {styles.ButtonText}>11 a 20</Text>
+                            <TouchableOpacity style = {this.state.parterns == '11 a 20' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({parterns: "11 a 20"})}>
+                                <Text style = {this.state.parterns == "11 a 20" ? styles.ButtonTextClicked: styles.ButtonText}>11 a 20</Text>
                             </TouchableOpacity>
                             </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({parterns: "mais 20"})}  underlayColor="white">
-                                <Text style = {styles.ButtonText}>mais 20</Text>
+                            <TouchableOpacity style = {this.state.parterns == 'mais 20' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({parterns: "mais 20"})}>
+                                <Text style = {this.state.parterns == "mais 20" ? styles.ButtonTextClicked: styles.ButtonText}>mais 20</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({parterns: "nenhum"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>nenhum</Text>
+                            <TouchableOpacity style = {this.state.parterns == 'nenhum' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({parterns: "nenhum"})}>
+                                <Text style = {this.state.parterns == "nenhum" ? styles.ButtonTextClicked: styles.ButtonText}>nenhum</Text>
                             </TouchableOpacity>
                         </View>   
                     </View>
@@ -225,19 +225,19 @@ export default class FourthPage extends Component{
                             <Text style = {styles.Text}>Você usa preservativo?</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({condon: "sim"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>sim</Text>
+                            <TouchableOpacity style = {this.state.condon == 'sim' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({condon: "sim"})}>
+                                <Text style = {this.state.condon == 'sim' ? styles.ButtonTextClicked: styles.ButtonText}>sim</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({condon: "sempre"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>sempre</Text>
+                            <TouchableOpacity style = {this.state.condon == 'sempre' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({condon: "sempre"})}>
+                                <Text style = {this.state.condon == 'sempre' ? styles.ButtonTextClicked: styles.ButtonText}>sempre</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({condon: "não"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>Não</Text>
+                            <TouchableOpacity style = {this.state.condon == 'não' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({condon: "não"})}>
+                                <Text style = {this.state.condon == 'não' ? styles.ButtonTextClicked: styles.ButtonText}>não</Text>
                             </TouchableOpacity>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({condon: "nunca"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>nunca</Text>
+                            <TouchableOpacity style = {this.state.condon == 'nunca' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({condon: "nunca"})}>
+                                <Text style = {this.state.condon == 'nunca' ? styles.ButtonTextClicked: styles.ButtonText}>nunca</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -246,24 +246,24 @@ export default class FourthPage extends Component{
                             <Text style = {styles.Text}>Você já fez o papanicolau? Qual o resultado?</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({citoOnco: "não fiz"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>não fiz</Text>
+                            <TouchableOpacity style = {this.state.citoOnco == 'não fiz' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({citoOnco: "não fiz"})}>
+                                <Text style = {this.state.citoOnco == 'não fiz' ? styles.ButtonTextClicked: styles.ButtonText}>não fiz</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.ButtonAdaptive} onPress = {() => this.setState({citoOnco: "baixo grau"})} underlayColor="white">
-                                <Text style = {styles.ButtonTextAdaptive}>lesão baixo grau</Text>
+                            <TouchableOpacity style = {this.state.citoOnco == 'baixo grau' ? styles.ButtonAdaptiveClicked: styles.ButtonAdaptive} onPress = {() => this.setState({citoOnco: "baixo grau"})}>
+                                <Text style = {this.state.citoOnco == 'baixo grau' ? styles.ButtonTextAdaptiveClicked: styles.ButtonTextAdaptive}>lesão baixo grau</Text>
                             </TouchableOpacity>
                             </View>    
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.ButtonAdaptive} onPress = {() => this.setState({citoOnco: "indeterminada"})} underlayColor="white">
-                                <Text style = {styles.ButtonTextAdaptive}>indeterminada</Text>
+                            <TouchableOpacity style = {this.state.citoOnco == 'indeterminada' ? styles.ButtonAdaptiveClicked: styles.ButtonAdaptive} onPress = {() => this.setState({citoOnco: "indeterminada"})}>
+                                <Text style = {this.state.citoOnco == 'indeterminada' ? styles.ButtonTextAdaptiveClicked: styles.ButtonTextAdaptive}>indeterminada</Text>
                             </TouchableOpacity>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({citoOnco: "negativo"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>negativo</Text>
+                            <TouchableOpacity style = {this.state.citoOnco == 'negativo' ? styles.ButtonAdaptiveClicked: styles.ButtonAdaptive} onPress = {() => this.setState({citoOnco: "negativo"})}>
+                                <Text style = {this.state.citoOnco == 'negativo' ? styles.ButtonTextAdaptiveClicked: styles.ButtonTextAdaptive}>negativo</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.ButtonAdaptive} onPress = {() => this.setState({citoOnco: "alto grau"})} underlayColor="white">
-                                <Text style = {styles.ButtonTextAdaptive}>lesão alto grau</Text>
+                            <TouchableOpacity style = {this.state.citoOnco == 'alto grau' ? styles.ButtonAdaptiveClicked: styles.ButtonAdaptive} onPress = {() => this.setState({citoOnco: "alto grau"})}>
+                                <Text style = {this.state.citoOnco == 'alto grau' ? styles.ButtonTextAdaptiveClicked: styles.ButtonTextAdaptive}>lesão alto grau</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -272,14 +272,14 @@ export default class FourthPage extends Component{
                             <Text style = {styles.Text}>Você já fez a colposcopia? Qual o resultado?</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({colposc: "não fiz"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>não fiz</Text>
+                            <TouchableOpacity style = {this.state.colposc == "não fiz" ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({colposc: "não fiz"})}>
+                                <Text style = {this.state.colposc == "não fiz" ? styles.ButtonTextClicked: styles.ButtonText}>não fiz</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({colposc: "atipica"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>atípica</Text>
+                            <TouchableOpacity style = {this.state.colposc == "atipica" ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({colposc: "atipica"})}>
+                                <Text style = {this.state.colposc == "atipica" ? styles.ButtonTextClicked: styles.ButtonText}>atipica</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({colposc: "normal"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>Normal</Text>
+                            <TouchableOpacity style = {this.state.colposc == "normal" ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({colposc: "normal"})}>
+                                <Text style = {this.state.colposc == "normal" ? styles.ButtonTextClicked: styles.ButtonText}>normal</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -288,19 +288,19 @@ export default class FourthPage extends Component{
                             <Text style = {styles.Text}>Você já realizou o teste HPV? Qual o resultado?</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({hpvTest: "negativo"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>negativo</Text>
+                            <TouchableOpacity style = {this.state.hpvTest == 'negativo' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({hpvTest: "negativo"})}>
+                                <Text style = {this.state.hpvTest == 'negativo' ? styles.ButtonTextClicked: styles.ButtonText}>negativo</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.ButtonAdaptive} onPress = {() => this.setState({hpvTest: "positivo oncogenico"})} underlayColor="white">
-                                <Text style = {styles.ButtonTextAdaptive}>positivo oncogenico</Text>
+                            <TouchableOpacity style = {this.state.hpvTest == 'positivo oncogenico' ? styles.ButtonAdaptiveClicked: styles.ButtonAdaptive} onPress = {() => this.setState({hpvTest: "positivo oncogenico"})}>
+                                <Text style = {this.state.hpvTest == 'positivo oncogenico' ? styles.ButtonTextAdaptiveClicked: styles.ButtonTextAdaptive}>positivo oncogenico</Text>
                             </TouchableOpacity>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({hpvTest: "não fiz"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>não fiz</Text>
+                            <TouchableOpacity style = {this.state.hpvTest == 'não fiz' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({hpvTest: "não fiz"})}>
+                                <Text style = {this.state.hpvTest == 'não fiz' ? styles.ButtonTextClicked: styles.ButtonText}>não fiz</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.ButtonAdaptive} onPress = {() => this.setState({hpvTest: "positivo não oncogenico"})} underlayColor="white">
-                                <Text style = {styles.ButtonTextAdaptive}>positivo não oncogenico</Text>
+                            <TouchableOpacity style = {this.state.hpvTest == 'positivo não oncogenico' ? styles.ButtonAdaptiveClicked: styles.ButtonAdaptive} onPress = {() => this.setState({hpvTest: "positivo não oncogenico"})}>
+                                <Text style = {this.state.hpvTest == 'positivo não oncogenico' ? styles.ButtonTextAdaptiveClicked: styles.ButtonTextAdaptive}>positivo não oncogenico</Text>
                             </TouchableOpacity>
                         </View>   
                     </View>
@@ -309,16 +309,16 @@ export default class FourthPage extends Component{
                             <Text style = {styles.Text}>Você já tomou a vacina contra HPV? Se já, há quanto tempo? (em anos)</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({hpvVaccine: "nunca"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>nunca</Text>
+                            <TouchableOpacity style = {this.state.hpvVaccine == 'nunca' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({hpvVaccine: "nunca"})}>
+                                <Text style = {this.state.hpvVaccine == 'nunca' ? styles.ButtonTextClicked: styles.ButtonText}>nunca</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.ButtonAdaptive} onPress = {() => this.setState({hpvVaccine: "mais 5"})} underlayColor="white">
-                                <Text style = {styles.ButtonTextAdaptive}>mais de 5</Text>
+                            <TouchableOpacity style = {this.state.hpvVaccine == 'mais 5' ? styles.ButtonAdaptiveClicked: styles.ButtonAdaptive} onPress = {() => this.setState({hpvVaccine: "mais 5"})}>
+                                <Text style = {this.state.hpvVaccine == 'mais 5' ? styles.ButtonTextAdaptiveClicked: styles.ButtonTextAdaptive}>mais de 5</Text>
                             </TouchableOpacity>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.ButtonAdaptive} onPress = {() => this.setState({hpvVaccine: "menos 5"})} underlayColor="white">
-                                <Text style = {styles.ButtonTextAdaptive}>menos de 5</Text>
+                            <TouchableOpacity style = {this.state.hpvVaccine == 'menos 5' ? styles.ButtonAdaptiveClicked: styles.ButtonAdaptive} onPress = {() => this.setState({hpvVaccine: "menos 5"})}>
+                                <Text style = {this.state.hpvVaccine == 'menos 5' ? styles.ButtonTextAdaptiveClicked: styles.ButtonTextAdaptive}>menos de 5</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -378,8 +378,33 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginRight: 20,
     },
+
+    ButtonClicked: {
+        borderColor: "#f4511e",
+        borderWidth: 3,
+        borderRadius: 40,
+        backgroundColor: 'white',
+        width: 96,
+        height: 32,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 20,
+    },
+
     ButtonAdaptive: {
         borderColor: "#4B0082",
+        borderWidth: 3,
+        borderRadius: 40,
+        backgroundColor: 'white',
+        width: 'auto',
+        height: 32,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 20,
+    },
+
+    ButtonAdaptiveClicked: {
+        borderColor: "#f4511e",
         borderWidth: 3,
         borderRadius: 40,
         backgroundColor: 'white',
@@ -397,8 +422,20 @@ const styles = StyleSheet.create({
         marginRight: 8
     },
 
+    ButtonTextAdaptiveClicked:{
+        color: '#f4511e',
+        fontSize: 20,
+        marginLeft: 8,
+        marginRight: 8
+    },
+
     ButtonText:{
         color: '#4B0082',
+        fontSize: 20,
+    },
+
+    ButtonTextClicked:{
+        color: '#f4511e',
         fontSize: 20,
     }
 })

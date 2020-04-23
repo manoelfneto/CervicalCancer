@@ -50,6 +50,12 @@ export default class SecondPage extends Component{
     addInfect(desease){
         var arr = this.state.infectDesease;
         arr.push(desease);
+        
+        if (this.state.infectDesease.find(n => n == "nenhuma")){
+            var a = this.state.infectDesease.indexOf("nenhuma")
+            arr.splice(a,1)
+        }
+
         this.setState({infectDesease: arr})
     }
 
@@ -79,8 +85,8 @@ export default class SecondPage extends Component{
             this.addScore(2)
         }if (this.state.infectDesease.includes("sifilis")){
             this.addScore(3)
-
         }
+        this.addScore(1) // pais brasil
     }
    
     pass = () => {
@@ -112,119 +118,132 @@ export default class SecondPage extends Component{
 
     }
     render(){ 
-        return (         
-            <ScrollView>          
-                <SafeAreaView style = {styles.Container}>
-                    <View style = {styles.QuestionsBox}>
-                        <View style = {styles.QuestionsText}>
-                            <Text style= {styles.Text}>Quantas porções de frutas e verduras você ingere por semana?</Text>
-                        </View>
-                        <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({fruits: "nenuhuma"})}  underlayColor="black">
-                                <Text style = {styles.ButtonText}>nenhuma</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({fruits: "mais 2"})}  underlayColor="white">
-                                <Text style = {styles.ButtonText}>mais 2</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({fruits: "menos 2"})}  underlayColor="white">
-                                <Text style = {styles.ButtonText}>menos 2</Text>
-                            </TouchableOpacity>
+            return (         
+                <ScrollView>          
+                    <SafeAreaView style = {styles.Container}>
+                        <View style = {styles.QuestionsBox}>
+                            <View style = {styles.QuestionsText}>
+                                <Text style= {styles.Text}>Quantas porções de frutas e verduras você ingere por semana?</Text>
                             </View>
-                    </View>
-                    <View style = {styles.QuestionsBox}>
-                        <View style = {styles.QuestionsText}>
-                            <Text style = {styles.Text}>Em qual cidade voce mora?</Text>
+                            <View style = {styles.ButtonsBox}>
+                                <TouchableOpacity style = {this.state.fruits == "nenhuma" ? styles.ButtonAdaptiveClicked: styles.ButtonAdaptive} onPress = {() => this.setState({fruits: "nenhuma"})}>
+                                    <Text style = {this.state.fruits == "nenhuma" ? styles.ButtonTextAdptiveClicked: styles.ButtonTextAdptive}>nenhuma</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style = {this.state.fruits == "mais 2" ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({fruits: "mais 2"})}>
+                                    <Text style = {this.state.fruits == "mais 2" ? styles.ButtonTextClicked: styles.ButtonText}>mais 2</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style = {this.state.fruits == "menos 2" ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({fruits: "menos 2"})}>
+                                    <Text style = {this.state.fruits == "menos 2" ? styles.ButtonTextClicked: styles.ButtonText}>menos 2</Text>
+                                </TouchableOpacity>
+                                </View>
                         </View>
-                        <View style = {styles.ButtonsBox}>
-                        <GooglePlacesAutocomplete
-                            placeholder='Search'
-                            minLength={2} // minimum length of text to search
-                            autoFocus={false}
-                            fetchDetails={true}
-                            onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
-                              console.log(data);
-                              console.log(details);
-                            }}
-                            getDefaultValue={() => {
-                              return ''; // text input default value
-                            }}
-                            query={{
-                              // available options: https://developers.google.com/places/web-service/autocomplete
-                              key: 'AIzaSyDL4oFbx4ZknoVAZFj8Wj0htUgs_QgfbQA',
-                              language: 'en', // language of the results
-                              types: '(cities)', // default: 'geocode'
-                            }}
-                            styles={{
-                              description: {
-                                fontWeight: 'bold',
-                              },
-                              predefinedPlacesDescription: {
-                                color: '#1faadb',
-                              },
-                            }}                   
-                            nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
-                            GoogleReverseGeocodingQuery={{
-                              // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
-                            }}
-                            GooglePlacesSearchQuery={{
-                              // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
-                              rankby: 'distance',
-                              types: 'food',
-                            }}
-                            GooglePlacesDetailsQuery={{
-                                // available options for GooglePlacesDetails API : https://developers.google.com/places/web-service/details
-                                fields: 'formatted_address',
-                            }}
-                    
-                            filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities                    
-                            predefinedPlacesAlwaysVisible={true}
-                             />               
+                        <View style = {styles.QuestionsBox}>
+                            <View style = {styles.QuestionsText}>
+                                <Text style = {styles.Text}>Em qual cidade você mora?</Text>
+                            </View>
+                            <View style = {styles.ButtonsBox}>
+                            <GooglePlacesAutocomplete
+                                placeholder='Search'
+                                minLength={2} // minimum length of text to search
+                                autoFocus={false}
+                                returnKeyType={'search'} // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
+                                keyboardAppearance={'light'} // Can be left out for default keyboardAppearance https://facebook.github.io/react-native/docs/textinput.html#keyboardappearance
+                                listViewDisplayed='auto'    // true/false/undefined
+                                fetchDetails={true}
+                                renderDescription={row => row.description} // custom description render
+                                onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
+                                    console.log(data, details);
+                                }}
+                            
+                                getDefaultValue={() => ''}
+                            
+                                query={{
+                                    // available options: https://developers.google.com/places/web-service/autocomplete
+                                    key: 'AIzaSyBbN0d4d6rAPK6oOPNtVrL4wMFRAsaQwAw',
+                                    language: 'en', // language of the results
+                                    types: '(cities)' // default: 'geocode'
+                                }}
+                            
+                                styles={{
+                                    textInputContainer: {
+                                    width: '100%'
+                                    },
+                                    description: {
+                                    fontWeight: 'bold'
+                                    },
+                                    predefinedPlacesDescription: {
+                                    color: '#1faadb'
+                                    }
+                                }}
+                            
+                                currentLocation={true} // Will add a 'Current location' button at the top of the predefined places list
+                                currentLocationLabel="Current location"
+                                nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
+                                GoogleReverseGeocodingQuery={{
+                                    // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
+                                }}
+                                GooglePlacesSearchQuery={{
+                                    // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
+                                    rankby: 'distance',
+                                    type: 'cafe'
+                                }}
+                                
+                                GooglePlacesDetailsQuery={{
+                                    // available options for GooglePlacesDetails API : https://developers.google.com/places/web-service/details
+                                    fields: 'formatted_address',
+                                }}
+                            
+                                filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
+                                //predefinedPlaces={[homePlace, workPlace]}
+                            
+                                debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
+                                />
+                            </View>
                         </View>
-                    </View>
-                    <View style = {styles.QuestionsBox}>
-                        <View style = {styles.QuestionsText}>
-                            <Text style = {styles.Text}>Você tem alguma dessas doenças?</Text>
-                        </View>
-                        <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addInfect('aids')} underlayColor="white">
-                                <Text style = {styles.ButtonText}>AIDS</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style = {styles.ButtonAdaptive} onPress = {() => this.addInfect('hepatite')} underlayColor="white">
-                                <Text style = {styles.ButtonTextAdptive}>hepatite B</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addInfect('sifilis')} underlayColor="white">
-                                <Text style = {styles.ButtonText}>siflis</Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.ButtonAdaptive} onPress = {() => this.addInfect('gonorreia')} underlayColor="white">
-                                <Text style = {styles.ButtonTextAdptive}>gonorreia</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addInfect('nenhuma')} underlayColor="white">
-                                <Text style = {styles.ButtonText}>nenhuma</Text>
-                            </TouchableOpacity>
+                        <View style = {styles.QuestionsBox}>
+                            <View style = {styles.QuestionsText}>
+                                <Text style = {styles.Text}>Você tem alguma dessas doenças?</Text>
+                            </View>
+                            <View style = {styles.ButtonsBox}>
+                                <TouchableOpacity style = {this.state.infectDesease.find(a => a == "aids") ? styles.ButtonClicked: styles.Button} onPress = {() => this.addInfect('aids')}>
+                                    <Text style = {this.state.infectDesease.find(a => a == "aids") ? styles.ButtonTextClicked: styles.ButtonText}>AIDS</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style = {this.state.infectDesease.find(h => h == "hepatite") ? styles.ButtonAdaptiveClicked: styles.ButtonAdaptive} onPress = {() => this.addInfect('hepatite')}>
+                                    <Text style = {this.state.infectDesease.find(h => h == "hepatite") ? styles.ButtonTextAdptiveClicked: styles.ButtonTextAdptive}>hepatite B</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style = {this.state.infectDesease.find(s => s == "sifilis") ? styles.ButtonClicked: styles.Button} onPress = {() => this.addInfect('sifilis')}>
+                                    <Text style = {this.state.infectDesease.find(a => a == "sifilis") ? styles.ButtonTextClicked: styles.ButtonText}>siflis</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style = {styles.ButtonsBox}>
+                                <TouchableOpacity style = {this.state.infectDesease.find(g => g == "gonorreia") ? styles.ButtonAdaptiveClicked: styles.ButtonAdaptive} onPress = {() => this.addInfect('gonorreia')}>
+                                    <Text style = {this.state.infectDesease.find(g => g == "gonorreia") ? styles.ButtonTextAdptiveClicked: styles.ButtonTextAdptive}>gonorreia</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style = {this.state.infectDesease.find(g => g == "nenhuma") ? styles.ButtonAdaptiveClicked: styles.ButtonAdaptive} onPress = {() => this.setState({infectDesease: ['nenhuma']})}>
+                                    <Text style = {this.state.infectDesease.find(g => g == "nenhuma") ? styles.ButtonTextAdptiveClicked: styles.ButtonTextAdptive}>nenhuma</Text>
+                                </TouchableOpacity>
 
-                        </View>   
-                    </View>
-                    <View style = {styles.QuestionsBox}>
-                        <View style = {styles.QuestionsText}>
-                            <Text style = {styles.Text}>Você fuma?</Text>
+                            </View>   
                         </View>
-                        <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({smoker: 'sim'})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>sim</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({smoker: 'não'})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>não</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({smoker: 'nunca'})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>nunca</Text>
-                            </TouchableOpacity>
+                        <View style = {styles.QuestionsBox}>
+                            <View style = {styles.QuestionsText}>
+                                <Text style = {styles.Text}>Você fuma?</Text>
                             </View>
-                    </View>          
-                </SafeAreaView>
-            </ScrollView>
-        )
+                            <View style = {styles.ButtonsBox}>
+                                <TouchableOpacity style = {this.state.smoker == 'sim' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({smoker: 'sim'})}>
+                                    <Text style = {this.state.smoker == 'sim' ? styles.ButtonTextClicked: styles.ButtonText}>sim</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style = {this.state.smoker == 'não' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({smoker: 'não'})}>
+                                    <Text style = {this.state.smoker == 'não' ? styles.ButtonTextClicked: styles.ButtonText}>não</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style = {this.state.smoker == 'nunca' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({smoker: 'nunca'})}>
+                                    <Text style = {this.state.smoker == 'nunca' ? styles.ButtonTextClicked: styles.ButtonText}>nunca</Text>
+                                </TouchableOpacity>
+                                </View>
+                        </View>          
+                    </SafeAreaView>
+                </ScrollView>
+            )
     }
 }
 
@@ -280,8 +299,33 @@ const styles = StyleSheet.create({
         marginRight: 20,
     },
 
+    ButtonClicked: {
+        borderColor: "#32CD32",
+        borderWidth: 3,
+        borderRadius: 40,
+        backgroundColor: 'white',
+        width: 96,
+        height: 32,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 20,
+    },
+
     ButtonAdaptive: {
         borderColor: "#FFAA00",
+        borderWidth: 3,
+        borderRadius: 40,
+        backgroundColor: 'white',
+        width: 'auto',
+        height: 32,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 20,
+
+    },
+
+    ButtonAdaptiveClicked: {
+        borderColor: "#32CD32",
         borderWidth: 3,
         borderRadius: 40,
         backgroundColor: 'white',
@@ -298,8 +342,20 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
 
+    ButtonTextClicked:{
+        color: '#32CD32',
+        fontSize: 20,
+    },
+
     ButtonTextAdptive: {
         color: '#FFAA00',
+        fontSize: 20,
+        marginLeft:8,
+        marginRight: 8
+    },
+
+    ButtonTextAdptiveClicked: {
+        color: '#32CD32',
         fontSize: 20,
         marginLeft:8,
         marginRight: 8
@@ -315,5 +371,7 @@ const styles = StyleSheet.create({
         fontSize: 10
     }
 })
+
+
 
 

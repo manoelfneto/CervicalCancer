@@ -74,7 +74,7 @@ export default class FirstPage extends Component{
                 </View>
 
                 <View style = {styles.informations}>
-                    {this.state.result < 11 ? 
+                        {this.state.result < 11 ? 
                         <Text style = {styles.informationText}>
                         Isso signica que, atualmente, baseado no seu estilo de vida e nas suas respostas, a chance
                         de você desenvolver cancer de colo uterino é muito baixa. 

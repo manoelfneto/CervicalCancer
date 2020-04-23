@@ -89,18 +89,36 @@ export default class ThirdPage extends Component{
     addMotherCancer(cancer){
         var arr = this.state.MotherCancer;
         arr.push(cancer);
+
+        if (this.state.MotherCancer.find(n => n == "nenhum")){
+            var a = this.state.MotherCancer.indexOf("nenhum")
+            arr.splice(a,1)
+        }
+
         this.setState({MotherCancer: arr})
     }
 
     addFatherCancer(cancer){
         var arr = this.state.FatherCancer;
         arr.push(cancer);
+
+        if (this.state.FatherCancer.find(n => n == "nenhum")){
+            var a = this.state.FatherCancer.indexOf("nenhum")
+            arr.splice(a,1)
+        }
+
         this.setState({FatherCancer: arr});
     }
     
     addHasOrDm(desease){
         var arr = this.state.HASorDM;
         arr.push(desease);
+
+        if (this.state.HASorDM.find(n => n == "nenhum")){
+            var a = this.state.HASorDM.indexOf("nenhum")
+            arr.splice(a,1)
+        }
+
         this.setState({HASorDM: arr});
     }
 
@@ -146,22 +164,22 @@ export default class ThirdPage extends Component{
                             <Text style= {styles.Text}>Sua mãe já teve algum tipo de cancer?</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addMotherCancer('mama')}  underlayColor="black">
-                                <Text style = {styles.ButtonText}>mama</Text>
+                            <TouchableOpacity style = {this.state.MotherCancer.find(m => m == 'mama') ? styles.ButtonClicked: styles.Button} onPress = {() => this.addMotherCancer('mama')}>
+                                <Text style = {this.state.MotherCancer.find(m => m == 'mama') ? styles.ButtonTextClicked: styles.ButtonText}>mama</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addMotherCancer('tireoide')}  underlayColor="white">
-                                <Text style = {styles.ButtonText}>tireoide</Text>
+                            <TouchableOpacity style = {this.state.MotherCancer.find(m => m == 'tireoide') ? styles.ButtonClicked: styles.Button} onPress = {() => this.addMotherCancer('tireoide')}>
+                                <Text style = {this.state.MotherCancer.find(m => m == 'tireoide') ? styles.ButtonTextClicked: styles.ButtonText}>tireoide</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addMotherCancer('intestino')}  underlayColor="white">
-                                <Text style = {styles.ButtonText}>intestino</Text>
+                            <TouchableOpacity style = {this.state.MotherCancer.find(m => m == 'intestino') ? styles.ButtonClicked: styles.Button} onPress = {() => this.addMotherCancer('intestino')}>
+                                <Text style = {this.state.MotherCancer.find(m => m == 'intestino') ? styles.ButtonTextClicked: styles.ButtonText}>intestino</Text>
                             </TouchableOpacity>
                             </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addMotherCancer('utero')}  underlayColor="white">
-                                <Text style = {styles.ButtonText}>utero</Text>
+                            <TouchableOpacity style = {this.state.MotherCancer.find(m => m == 'utero') ? styles.ButtonClicked: styles.Button} onPress = {() => this.addMotherCancer('utero')}>
+                                <Text style = {this.state.MotherCancer.find(m => m == 'utero') ? styles.ButtonTextClicked: styles.ButtonText}>utero</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addMotherCancer('nenhum')} underlayColor="white">
-                                <Text style = {styles.ButtonText}>nenhum</Text>
+                            <TouchableOpacity style = {this.state.MotherCancer.find(m => m == 'nenhum') ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({MotherCancer: ['nenhum']})}>
+                                <Text style = {this.state.MotherCancer.find(m => m == 'nenhum') ? styles.ButtonTextClicked: styles.ButtonText}>nenhum</Text>
                             </TouchableOpacity>
                         </View>   
                     </View>
@@ -170,19 +188,19 @@ export default class ThirdPage extends Component{
                             <Text style= {styles.Text}>Seu pai já teve algum tipo de cancer?</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addFatherCancer('mama')}  underlayColor="black">
-                                <Text style = {styles.ButtonText}>mama</Text>
+                            <TouchableOpacity style = {this.state.FatherCancer.find(m => m == 'mama') ? styles.ButtonClicked: styles.Button} onPress = {() => this.addFatherCancer('mama')}>
+                                <Text style = {this.state.FatherCancer.find(m => m == 'mama') ? styles.ButtonTextClicked: styles.ButtonText}>mama</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addFatherCancer('tireoide')}  underlayColor="white">
-                                <Text style = {styles.ButtonText}>tireoide</Text>
+                            <TouchableOpacity style = {this.state.FatherCancer.find(m => m == 'tireoide') ? styles.ButtonClicked: styles.Button} onPress = {() => this.addFatherCancer('tireoide')}>
+                                <Text style = {this.state.FatherCancer.find(m => m == 'tireoide') ? styles.ButtonTextClicked: styles.ButtonText}>tireoide</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addFatherCancer('intestino')}  underlayColor="white">
-                                <Text style = {styles.ButtonText}>intestino</Text>
+                            <TouchableOpacity style = {this.state.FatherCancer.find(m => m == 'intestino') ? styles.ButtonClicked: styles.Button} onPress = {() => this.addFatherCancer('intestino')}>
+                                <Text style = {this.state.FatherCancer.find(m => m == 'intestino') ? styles.ButtonTextClicked: styles.ButtonText}>intestino</Text>
                             </TouchableOpacity>
                             </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addFatherCancer('nenhum')} underlayColor="white">
-                                <Text style = {styles.ButtonText}>nenhum</Text>
+                            <TouchableOpacity style = {this.state.FatherCancer.find(m => m == 'nenhum') ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({FatherCancer: ['nenhum']})}>
+                                <Text style = {this.state.FatherCancer.find(m => m == 'nenhum') ? styles.ButtonTextClicked: styles.ButtonText}>nenhum</Text>
                             </TouchableOpacity>
                         </View>   
                     </View>
@@ -191,14 +209,14 @@ export default class ThirdPage extends Component{
                             <Text style = {styles.Text}>Você tem Hipertensão ou Diabetes?</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addHasOrDm('hipert')} underlayColor="white">
-                                <Text style = {styles.ButtonText}>hipert.</Text>
+                            <TouchableOpacity style = {this.state.HASorDM.find(h => h == "hipert") ? styles.ButtonClicked: styles.Button} onPress = {() => this.addHasOrDm('hipert')}>
+                                <Text style = {this.state.HASorDM.find(h => h == "hipert") ? styles.ButtonTextClicked: styles.ButtonText}>hipert.</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addHasOrDm('diabetes')} underlayColor="white">
-                                <Text style = {styles.ButtonText}>diabetes</Text>
+                            <TouchableOpacity style = {this.state.HASorDM.find(h => h == "diabetes") ? styles.ButtonClicked: styles.Button} onPress = {() => this.addHasOrDm('diabetes')}>
+                                <Text style = {this.state.HASorDM.find(h => h == "diabetes") ? styles.ButtonTextClicked: styles.ButtonText}>diabetes</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.addHasOrDm('nenhuma')} underlayColor="white">
-                                <Text style = {styles.ButtonText}>nenhum</Text>
+                            <TouchableOpacity style = {this.state.HASorDM.find(h => h == "nenhum") ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({HASorDM: ['nenhum']})}>
+                                <Text style = {this.state.HASorDM.find(h => h == "nenhum") ? styles.ButtonTextClicked: styles.ButtonText}>nenhum</Text>
                             </TouchableOpacity>
                             </View>  
                     </View>
@@ -207,11 +225,11 @@ export default class ThirdPage extends Component{
                             <Text style = {styles.Text}>Você faz uso de corticoide?</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({cort: "sim"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>sim</Text>
+                            <TouchableOpacity style = {this.state.cort == 'sim' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({cort: "sim"})}>
+                                <Text style = {this.state.cort == 'sim' ? styles.ButtonTextClicked: styles.ButtonText}>sim</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.Button} onPress = {() => this.setState({cort: "não"})} underlayColor="white">
-                                <Text style = {styles.ButtonText}>não</Text>
+                            <TouchableOpacity style = {this.state.cort == 'não' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({cort: "não"})}>
+                                <Text style = {this.state.cort == 'não' ? styles.ButtonTextClicked: styles.ButtonText}>não</Text>
                             </TouchableOpacity>
                         </View>   
                     </View>
@@ -273,8 +291,25 @@ const styles = StyleSheet.create({
         marginRight: 20,
     },
 
+    ButtonClicked: {
+        borderColor: "#4B0082",
+        borderWidth: 3,
+        borderRadius: 40,
+        backgroundColor: 'white',
+        width: 96,
+        height: 32,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 20,
+    },
+
     ButtonText:{
         color: '#32CD32',
+        fontSize: 20,
+    },
+
+    ButtonTextClicked:{
+        color: '#4B0082',
         fontSize: 20,
     }
 })
