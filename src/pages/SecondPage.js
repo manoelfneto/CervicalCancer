@@ -142,6 +142,7 @@ export default class SecondPage extends Component{
                                 <Text style = {styles.Text}>Em qual cidade você mora?</Text>
                             </View>
                             <View style = {styles.ButtonsBox}>
+
                             <GooglePlacesAutocomplete
                                 placeholder='Search'
                                 minLength={2} // minimum length of text to search
@@ -150,7 +151,7 @@ export default class SecondPage extends Component{
                                 keyboardAppearance={'light'} // Can be left out for default keyboardAppearance https://facebook.github.io/react-native/docs/textinput.html#keyboardappearance
                                 listViewDisplayed='auto'    // true/false/undefined
                                 fetchDetails={true}
-                                renderDescription={row => row.description} // custom description render
+                                //renderDescription={row => row.description} // custom description render
                                 onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
                                     console.log(data, details);
                                 }}
@@ -197,7 +198,7 @@ export default class SecondPage extends Component{
                                 //predefinedPlaces={[homePlace, workPlace]}
                             
                                 debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
-                                />
+                                /> 
                             </View>
                         </View>
                         <View style = {styles.QuestionsBox}>

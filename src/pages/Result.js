@@ -28,10 +28,10 @@ export default class FirstPage extends Component{
         if (this.state.pageOneValue.includes("nulo") || this.state.pageFourValue.includes("nulo")){
             this.setState({result: 0})
         }else{
-        const totalOne = this.state.pageOneValue.reduce((a, b) => a + b);
-        const totalTwo = this.state.pageTwoValue.reduce((a, b) => a + b);
-        const totalThree = this.state.pageThreeValue.reduce((a, b) => a + b);
-        const totalFour = this.state.pageFourValue.reduce((a, b) => a + b);
+            const totalOne = this.state.pageOneValue.reduce((a, b) => a + b);
+            const totalTwo = this.state.pageTwoValue.reduce((a, b) => a + b);
+            const totalThree = this.state.pageThreeValue.reduce((a, b) => a + b);
+            const totalFour = this.state.pageFourValue.reduce((a, b) => a + b);
         
         this.setState({result: totalOne + totalTwo + totalThree + totalFour })} 
     }
@@ -47,12 +47,12 @@ export default class FirstPage extends Component{
         return (
             <SafeAreaView style = {styles.Container}>       
                 <View style = {styles.Result}>
-                    {this.state.result <= 11 ? 
+                    {this.state.result < 11 ? 
                         <Text style = {styles.ResultText}>
                             Muito baixo
                         </Text>: null }
 
-                    {this.state.result > 11 && this.state.result <=20 ? 
+                    {this.state.result >= 11 && this.state.result <=20 ? 
                         <Text style = {styles.ResultText}>
                             Baixo
                         </Text>: null }
@@ -80,7 +80,7 @@ export default class FirstPage extends Component{
                         de você desenvolver cancer de colo uterino é muito baixa. 
                         </Text>: null }
                     
-                        {this.state.result > 11 && this.state.result <=20 ? 
+                        {this.state.result >= 11 && this.state.result <=20 ? 
                         <Text style = {styles.informationText}>
                         Isso signica que, atualmente, baseado no seu estilo de vida e nas suas respostas, a chance
                         de você desenvolver cancer de colo uterino é baixa.

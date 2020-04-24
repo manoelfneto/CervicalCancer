@@ -12,10 +12,10 @@
   "dependencies": {
     "@react-native-firebase/app": "^6.2.0",
     "@react-native-firebase/database": "^6.2.0",
+    "native-base": "^2.13.12",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-gesture-handler": "^1.5.2",
-    "react-native-google-autocomplete": "^0.1.8",
     "react-native-google-places-autocomplete": "^1.4.1",
     "react-native-sound": "^0.11.0",
     "react-navigation": "^4.0.10",
