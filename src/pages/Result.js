@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Button, FlatList, List, ListItem } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, FlatList, StatusBar } from 'react-native';
 
 
 export default class FirstPage extends Component{
@@ -45,7 +45,12 @@ export default class FirstPage extends Component{
         const recomendations = navigation.getParam('recomendations', 'recomendations'); 
 
         return (
-            <SafeAreaView style = {styles.Container}>       
+            <SafeAreaView style = {styles.Container}>     
+                <StatusBar
+                        barStyle = "light-content"
+                        backgroundColor = "#F0E68C"
+                        hidden = {false}
+                    />  
                 <View style = {styles.Result}>
                     {this.state.result < 11 ? 
                         <Text style = {styles.ResultText}>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Button, Alert } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Button, Alert, Status, StatusBar} from 'react-native';
 
 export default class FirstPage extends Component{
 
@@ -118,6 +118,11 @@ export default class FirstPage extends Component{
         return (
             <ScrollView>
                 <SafeAreaView style = {styles.Container}>
+                    <StatusBar
+                        barStyle = "light-content"
+                        backgroundColor = "#0099FF"
+                        hidden = {false}
+                    />
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style= {styles.Text}>Qual a sua idade?</Text>

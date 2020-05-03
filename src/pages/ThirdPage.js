@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Button, Alert } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Alert, StatusBar } from 'react-native';
 
 export default class ThirdPage extends Component{
     static navigationOptions = ({ navigation }) => {
@@ -159,6 +159,11 @@ export default class ThirdPage extends Component{
         return (
             <ScrollView>
                 <SafeAreaView style = {styles.Container}>
+                    <StatusBar
+                        barStyle = "light-content"
+                        backgroundColor = "#32CD32"
+                        hidden = {false}
+                    />
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style= {styles.Text}>Sua mãe já teve algum tipo de cancer?</Text>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, TextInput, Alert } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Alert, StatusBar } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 export default class SecondPage extends Component{
@@ -121,6 +121,11 @@ export default class SecondPage extends Component{
             return (         
                 <ScrollView>          
                     <SafeAreaView style = {styles.Container}>
+                        <StatusBar
+                            barStyle = "light-content"
+                            backgroundColor = "#FFAA00"
+                            hidden = {false}
+                        />
                         <View style = {styles.QuestionsBox}>
                             <View style = {styles.QuestionsText}>
                                 <Text style= {styles.Text}>Quantas porções de frutas e verduras você ingere por semana?</Text>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Button, Alert } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Alert, StatusBar } from 'react-native';
 import database from '@react-native-firebase/database';
 
 
@@ -196,6 +196,11 @@ export default class FourthPage extends Component{
         return (
             <ScrollView>
                 <SafeAreaView style = {styles.Container}>
+                    <StatusBar
+                        barStyle = "light-content"
+                        backgroundColor = "#4B0082"
+                        hidden = {false}
+                    />
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
                             <Text style= {styles.Text}>Quantos parceiros, homens, você teve no ultimo ano?</Text>
