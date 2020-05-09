@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Alert, StatusBar} from 'react-native';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 export default class Main extends Component{
     static navigationOptions = {
@@ -19,6 +20,11 @@ export default class Main extends Component{
     render() {
         return(
             <View style = { styles.container}>
+                <StatusBar
+                    barStyle = "light-content"
+                    backgroundColor = "#f4511e"
+                    hidden = {false}
+                />
                 <View style = {styles.presentation}>
                     <Text style = {styles.PresentationText}>
                         Este aplicativo foi criado para medir o seu risco de desenvolver câncer de 
@@ -33,8 +39,8 @@ export default class Main extends Component{
                     <TouchableOpacity style = {styles.Button} onPress = { () => this.props.navigation.navigate('FirstPage')}>
                         <Text style = {styles.TextButton}>Iniciar Teste</Text>
                     </TouchableOpacity>
-                </View>
-                
+                </View>  
+                        
             </View>
         );
     }

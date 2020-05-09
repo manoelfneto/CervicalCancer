@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Button, Alert, Status, StatusBar} from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Alert, StatusBar} from 'react-native';
 
 export default class FirstPage extends Component{
 
@@ -270,6 +270,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
         marginBottom: 32,
+        
     },
 
     Button: {
@@ -282,6 +283,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 20,
+        
     },
 
     ButtonClicked: {

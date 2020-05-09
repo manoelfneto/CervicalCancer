@@ -290,24 +290,26 @@ export default class FourthPage extends Component{
                     </View>
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>
-                            <Text style = {styles.Text}>Você já realizou o teste HPV? Qual o resultado?</Text>
+                            <Text style = {styles.Text}>Você já realizou o teste HPV? Qual foi o resultado?</Text>
                         </View>
                         <View style = {styles.ButtonsBox}>
                             <TouchableOpacity style = {this.state.hpvTest == 'negativo' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({hpvTest: "negativo"})}>
                                 <Text style = {this.state.hpvTest == 'negativo' ? styles.ButtonTextClicked: styles.ButtonText}>negativo</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {this.state.hpvTest == 'positivo oncogenico' ? styles.ButtonAdaptiveClicked: styles.ButtonAdaptive} onPress = {() => this.setState({hpvTest: "positivo oncogenico"})}>
-                                <Text style = {this.state.hpvTest == 'positivo oncogenico' ? styles.ButtonTextAdaptiveClicked: styles.ButtonTextAdaptive}>positivo oncogenico</Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style = {styles.ButtonsBox}>
                             <TouchableOpacity style = {this.state.hpvTest == 'não fiz' ? styles.ButtonClicked: styles.Button} onPress = {() => this.setState({hpvTest: "não fiz"})}>
                                 <Text style = {this.state.hpvTest == 'não fiz' ? styles.ButtonTextClicked: styles.ButtonText}>não fiz</Text>
-                            </TouchableOpacity>
+                            </TouchableOpacity>   
+                        </View>
+                        <View style = {styles.ButtonsBox}>
                             <TouchableOpacity style = {this.state.hpvTest == 'positivo não oncogenico' ? styles.ButtonAdaptiveClicked: styles.ButtonAdaptive} onPress = {() => this.setState({hpvTest: "positivo não oncogenico"})}>
                                 <Text style = {this.state.hpvTest == 'positivo não oncogenico' ? styles.ButtonTextAdaptiveClicked: styles.ButtonTextAdaptive}>positivo não oncogenico</Text>
                             </TouchableOpacity>
-                        </View>   
+                        </View> 
+                        <View style = {styles.ButtonsBox}>
+                            <TouchableOpacity style = {this.state.hpvTest == 'positivo oncogenico' ? styles.ButtonAdaptiveClicked: styles.ButtonAdaptive} onPress = {() => this.setState({hpvTest: "positivo oncogenico"})}>
+                                <Text style = {this.state.hpvTest == 'positivo oncogenico' ? styles.ButtonTextAdaptiveClicked: styles.ButtonTextAdaptive}>positivo oncogenico</Text>
+                            </TouchableOpacity>
+                        </View>  
                     </View>
                     <View style = {styles.QuestionsBox}>
                         <View style = {styles.QuestionsText}>

@@ -34,7 +34,6 @@ target 'CervicalCancer' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'RNSound', :path => '../node_modules/react-native-sound'
 
   target 'CervicalCancerTests' do
     inherit! :search_paths
