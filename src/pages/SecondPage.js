@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Alert, StatusBar } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Alert, StatusBar, Picker} from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 export default class SecondPage extends Component{
@@ -32,6 +32,7 @@ export default class SecondPage extends Component{
             null: this.props.navigation.getParam("null", 'none')
         }
     }
+
 
     validationToPass(){
         if(this.state.fruits == '' || this.state.infectDesease == [] || this.state.smoker == ''){
@@ -99,6 +100,7 @@ export default class SecondPage extends Component{
             city: this.state.city,
             infectDesease: this.state.infectDesease,
             smoker: this.state.smoker,
+            city: this.state.city,
             pageTwoValue: this.state.pageTwoValue,
 
             age: this.state.age,
@@ -106,7 +108,7 @@ export default class SecondPage extends Component{
             gesta: this.state.gesta,
             para: this.state.para,
             abort: this.state.abort,
-            pageOneValue: this.state.pageOneValue
+            pageOneValue: this.state.pageOneValue,
         })
 
         }
@@ -119,7 +121,7 @@ export default class SecondPage extends Component{
     }
     render(){ 
             return (         
-                <ScrollView>          
+                //<ScrollView>          
                     <SafeAreaView style = {styles.Container}>
                         <StatusBar
                             barStyle = "light-content"
@@ -144,66 +146,46 @@ export default class SecondPage extends Component{
                         </View>
                         <View style = {styles.QuestionsBox}>
                             <View style = {styles.QuestionsText}>
-                                <Text style = {styles.Text}>Em qual cidade você mora?</Text>
+                                <Text style = {styles.Text}>De onde você é?</Text>
                             </View>
-                            <View style = {styles.ButtonsBox}>
-                                <GooglePlacesAutocomplete
-                                    placeholder='Search'
-                                    minLength={2} // minimum length of text to search
-                                    autoFocus={false}
-                                    returnKeyType={'search'} // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
-                                    keyboardAppearance={'light'} // Can be left out for default keyboardAppearance https://facebook.github.io/react-native/docs/textinput.html#keyboardappearance
-                                    listViewDisplayed='auto'    // true/false/undefined
-                                    fetchDetails={true}
-                                    renderDescription={row => row.description} // custom description render
-                                    onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
-                                    console.log(data, details);
-                                    }}
-                            
-                                    getDefaultValue={() => ''}
-                            
-                                    query={{
-                                    // available options: https://developers.google.com/places/web-service/autocomplete
-                                    key: 'AIzaSyC7lNGVkoycrRT4SH0jsMoF04Nt6gzqxNc',
-                                    language: 'en', // language of the results
-                                    types: '(cities)' // default: 'geocode'
-                                    }}
-                            
-                                    styles={{
-                                    textInputContainer: {
-                                        width: '100%'
-                                    },
-                                    description: {
-                                        fontWeight: 'bold'
-                                    },
-                                    predefinedPlacesDescription: {
-                                        color: '#1faadb'
-                                    }
-                                    }}
-                            
-                                    //currentLocation={true} // Will add a 'Current location' button at the top of the predefined places list
-                                    //currentLocationLabel="Current location"
-                                    nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
-                                    GoogleReverseGeocodingQuery={{
-                                    // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
-                                    }}
-                                    GooglePlacesSearchQuery={{
-                                    // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
-                                    rankby: 'distance',
-                                    type: 'cafe'
-                                    }}
-                                    
-                                    GooglePlacesDetailsQuery={{
-                                    // available options for GooglePlacesDetails API : https://developers.google.com/places/web-service/details
-                                    fields: 'formatted_address',
-                                    }}
-                            
-                                    filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
-                            
-                                    debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
-                                    />
-                                
-                            </View>
+                        <View style = {styles.pickerStyle}>   
+                            <Picker
+                            style = {styles.picker}
+                            selectedValue = {this.state.city}
+                            onValueChange = {
+                                (itemValor, itemIndex) => 
+                                this.setState({ city: itemValor })}
+                            >
+                                <Picker.Item label="Escolha o estado" value="" />
+                                <Picker.Item label="Acre" value="AC" />
+                                <Picker.Item label="Alagoas" value="AL" />
+                                <Picker.Item label="Amapá" value="AP" />
+                                <Picker.Item label="Amazonas" value="AM" />
+                                <Picker.Item label="Bahia" value="BA" />
+                                <Picker.Item label="Ceará" value="CE" />
+                                <Picker.Item label="Distrito Federal" value="DF" />
+                                <Picker.Item label="Espirito Santo" value="ES" />
+                                <Picker.Item label="Goias" value="GO" />
+                                <Picker.Item label="Maranhão" value="MA" />
+                                <Picker.Item label="Mato Grosso" value="MT" />
+                                <Picker.Item label="Mato Grosso do Sul" value="MS" />
+                                <Picker.Item label="Minas Gerais" value="MG" />
+                                <Picker.Item label="Pará" value="PA" />
+                                <Picker.Item label="Paraíba" value="PB" />
+                                <Picker.Item label="Paraná" value="PR" />
+                                <Picker.Item label="Pernambuco" value="PE" />
+                                <Picker.Item label="Piauí" value="PI" />
+                                <Picker.Item label="Rio de Janeiro" value="RJ" />
+                                <Picker.Item label="Rio Grande do Norte" value="RN" />
+                                <Picker.Item label="Rio Grande do Sul" value="RS" />
+                                <Picker.Item label="Rondônia" value="RO" />
+                                <Picker.Item label="Roraima" value="RR" />
+                                <Picker.Item label="Santa Catarina" value="SC" />
+                                <Picker.Item label="São Paulo" value="São Paulo" />
+                                <Picker.Item label="Sergipe" value="SE" />
+                                <Picker.Item label="Tocantins" value="TO" />
+                            </Picker>
+                        </View>
                         </View>
                         <View style = {styles.QuestionsBox}>
                             <View style = {styles.QuestionsText}>
@@ -247,7 +229,7 @@ export default class SecondPage extends Component{
                                 </View>
                         </View>          
                     </SafeAreaView>
-                </ScrollView>
+                //</ScrollView>
             )
     }
 }
@@ -374,6 +356,17 @@ const styles = StyleSheet.create({
         width: 328,
         borderRadius: 40,
         fontSize: 10
+    },
+
+    pickerStyle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    picker: {
+        width: 300,
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 })
 

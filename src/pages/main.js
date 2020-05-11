@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert, StatusBar} from 'react-native';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { View, Text, TouchableOpacity, StyleSheet, StatusBar} from 'react-native';
 
 export default class Main extends Component{
     static navigationOptions = {
@@ -39,8 +38,7 @@ export default class Main extends Component{
                     <TouchableOpacity style = {styles.Button} onPress = { () => this.props.navigation.navigate('FirstPage')}>
                         <Text style = {styles.TextButton}>Iniciar Teste</Text>
                     </TouchableOpacity>
-                </View>  
-                        
+                </View> 
             </View>
         );
     }
