@@ -93,8 +93,8 @@ export default class ThirdPage extends Component{
         if (this.state.MotherCancer.find(n => n == "nenhum")){
             var a = this.state.MotherCancer.indexOf("nenhum")
             arr.splice(a,1)
-        }
 
+        } 
         this.setState({MotherCancer: arr})
     }
 
@@ -252,7 +252,9 @@ const styles = StyleSheet.create({
 
     Container: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 
     QuestionsBox: {

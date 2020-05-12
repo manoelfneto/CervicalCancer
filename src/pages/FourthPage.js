@@ -342,15 +342,18 @@ const styles = StyleSheet.create({
 
     Container: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 
     QuestionsBox: {
+        justifyContent: 'flex-start',
         flex: 1,
         marginTop: 16,
         marginLeft: 16,
         marginRight: 16,
-        marginBottom: 32      
+        marginBottom: 32  ,
     },
 
     QuestionsText:{
@@ -359,6 +362,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginLeft: 30,
         marginBottom: 24,
+        marginRight: 25
     },
 
     Text: {

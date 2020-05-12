@@ -35,7 +35,7 @@ export default class SecondPage extends Component{
 
 
     validationToPass(){
-        if(this.state.fruits == '' || this.state.infectDesease == [] || this.state.smoker == ''){
+        if (this.state.fruits == '' || this.state.infectDesease == [] || this.state.smoker == '' || this.state.city == ""){
             Alert.alert("você esqueceu de responder alguma pergunta")
         }else{
             return true
@@ -121,7 +121,7 @@ export default class SecondPage extends Component{
     }
     render(){ 
             return (         
-                //<ScrollView>          
+                <ScrollView>          
                     <SafeAreaView style = {styles.Container}>
                         <StatusBar
                             barStyle = "light-content"
@@ -229,7 +229,7 @@ export default class SecondPage extends Component{
                                 </View>
                         </View>          
                     </SafeAreaView>
-                //</ScrollView>
+                </ScrollView>
             )
     }
 }
@@ -242,7 +242,9 @@ const styles = StyleSheet.create({
 
     Container: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 
     QuestionsBox: {
@@ -364,7 +366,7 @@ const styles = StyleSheet.create({
     },
 
     picker: {
-        width: 300,
+        width: 200,
         justifyContent: 'center',
         alignItems: 'center',
     }

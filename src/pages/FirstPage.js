@@ -116,7 +116,7 @@ export default class FirstPage extends Component{
 
     render(){
         return (
-            <ScrollView>
+            <ScrollView style = {styles.scroll}>
                 <SafeAreaView style = {styles.Container}>
                     <StatusBar
                         barStyle = "light-content"
@@ -241,7 +241,9 @@ const styles = StyleSheet.create({
 
     Container: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 
     QuestionsBox: {
@@ -250,7 +252,8 @@ const styles = StyleSheet.create({
         marginTop: 16,
         marginLeft: 16,
         marginRight: 16,
-        marginBottom: 32      
+        marginBottom: 32,
+                 
     },
 
     QuestionsText:{

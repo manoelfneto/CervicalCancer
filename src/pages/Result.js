@@ -6,7 +6,7 @@ export default class FirstPage extends Component{
     static navigationOptions = ({ navigation }) => {
         let headerLeft = null;
         let headerTitle = "Resultado";   
-        let headerStyle = {backgroundColor: '#F0E68C'};
+        let headerStyle = {backgroundColor: '#807511'};
         return { headerStyle, headerTitle, headerLeft} 
     }
 
@@ -48,7 +48,7 @@ export default class FirstPage extends Component{
             <SafeAreaView style = {styles.Container}>     
                 <StatusBar
                         barStyle = "light-content"
-                        backgroundColor = "#F0E68C"
+                        backgroundColor = "#807511"
                         hidden = {false}
                     />  
                 <View style = {styles.Result}>
@@ -107,11 +107,17 @@ export default class FirstPage extends Component{
                         <Text style = {styles.informationText}>
                         Isso signica que, atualmente, baseado no seu estilo de vida e nas suas respostas, a chance
                         de você desenvolver cancer de colo é muito alta. Se atente as recomendações.
-                        </Text>: null }                 
+                        </Text>: null }    
+                        
                 </View>
 
                 <View style = {styles.informations}>
-                    {this.state.recomendations.lenght != 0 ?     
+                    {this.state.recomendations.lenght != 0 ? 
+                    <Text style = {styles.recomendationText}>
+                         Algumas recomendações abaixo:
+                     </Text>: null}   
+
+                    {this.state.recomendations.lenght != 0 ?    
                     <FlatList
                     data = {recomendations}
                     keyExtractor={item => item.key}
@@ -187,7 +193,7 @@ const styles = StyleSheet.create({
     },
 
     Button: {
-        borderColor: "#F0E68C",
+        borderColor: "#807511",
         borderWidth: 3,
         borderRadius: 40,
         backgroundColor: 'white',
@@ -201,7 +207,12 @@ const styles = StyleSheet.create({
     ButtonText: {
         fontWeight: 'bold',
         fontSize: 20,
-        color: "#F0E68C"
+        color: "#807511"
+    },
+
+    recomendationText: {
+        fontSize: 20,
+        marginBottom: 15
     }
 })
 
