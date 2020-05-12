@@ -113,19 +113,19 @@ export default class FourthPage extends Component{
 
     recomendations(){
         if (this.state.age == "0 a 20" && this.state.firstSexual == 'menos 20'){
-            this.addRecomendation("Realize exames de prevenção");
+            this.addRecomendation("Realize exames de prevenção.");
         }if (this.state.fruits == "nenhuma" || this.state.fruits == "menos 2"){
-            this.addRecomendation('Aumente a ingestão de vitaminas na dieta');
+            this.addRecomendation('Aumente a ingestão de vitaminas na dieta.');
         }if (this.state.smoker == 'sim'){
-            this.addRecomendation('Reduza o consumo de cigarros');
+            this.addRecomendation('Reduza o consumo de cigarros.');
         }if (this.state.condon == 'não' || this.state.condon == 'nunca'){
-            this.addRecomendation('Use camisinha nas relações');
+            this.addRecomendation('Use camisinha nas relações.');
         }if (this.state.colposc == "atipica" ){
-            this.addRecomendation('Pesquise um pouco mais sobre a lesão no colo')
+            this.addRecomendation('Pesquise um pouco mais sobre lesão no seu útero.')
         }if (this.state.hpvVaccine == 'nunca'){
-            this.addRecomendation('A vacina contra HPV é segura e eficaz, procure seu ginecologista')
+            this.addRecomendation('A vacina contra HPV é segura e eficaz, procure seu ginecologista para ter acesso a ela.')
         }if (this.state.hpvVaccine == 'mais 5'){
-            this.addRecomendation('Atualize sua vacina contra HPV')
+            this.addRecomendation('Atualize sua vacina contra HPV.')
     }}
  
     postFirebase(){
@@ -388,6 +388,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 20,
+        shadowColor: 'rgba(0,0,0, .4)', // IOS
+        shadowOffset: { height: 1, width: 1 }, // IOS
+        shadowOpacity: 1, // IOS
+        shadowRadius: 1, //IOS
+        backgroundColor: '#fff',
+        elevation: 8, // Android
     },
 
     ButtonClicked: {
@@ -400,6 +406,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 20,
+        shadowColor: 'rgba(0,0,0, .4)', // IOS
+        shadowOffset: { height: 1, width: 1 }, // IOS
+        shadowOpacity: 1, // IOS
+        shadowRadius: 1, //IOS
+        backgroundColor: '#fff',
+        elevation: 8, // Android
     },
 
     ButtonAdaptive: {
@@ -412,6 +424,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 20,
+        shadowColor: 'rgba(0,0,0, .4)', // IOS
+        shadowOffset: { height: 1, width: 1 }, // IOS
+        shadowOpacity: 1, // IOS
+        shadowRadius: 1, //IOS
+        backgroundColor: '#fff',
+        elevation: 8, // Android
     },
 
     ButtonAdaptiveClicked: {
@@ -424,6 +442,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 20,
+        shadowColor: 'rgba(0,0,0, .4)', // IOS
+        shadowOffset: { height: 1, width: 1 }, // IOS
+        shadowOpacity: 1, // IOS
+        shadowRadius: 1, //IOS
+        backgroundColor: '#fff',
+        elevation: 8, // Android
     },
 
     ButtonTextAdaptive:{
